@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Cyber Sathi</title>
+    <meta name="description" content="Get in touch with Cyber Sathi. Report scams, ask questions, or provide feedback about our digital safety tools.">
+    <meta name="keywords" content="contact cyber sathi, report scam, cybersecurity support, feedback">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with Cyber Sathi</p>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email Us</h3>
+                    <p>For general inquiries, feedback, or questions about our tools.</p>
+                    <a href="mailto:info@cybersathi.com" class="contact-link">info@cybersathi.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🚨</div>
+                    <h3>Report a Scam</h3>
+                    <p>To report new scam patterns or provide threat intelligence.</p>
+                    <a href="mailto:report@cybersathi.com" class="contact-link">report@cybersathi.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💡</div>
+                    <h3>Feedback & Suggestions</h3>
+                    <p>Share your ideas for improving our tools and content.</p>
+                    <a href="mailto:feedback@cybersathi.com" class="contact-link">feedback@cybersathi.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required aria-label="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required aria-label="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required aria-label="Subject">
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="scam-report">Report a Scam</option>
+                            <option value="feedback">Feedback & Suggestions</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required aria-label="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div id="form-result" class="form-result hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Notice -->
+    <section class="important-notice">
+        <div class="container">
+            <div class="notice-card">
+                <div class="notice-icon">⚠️</div>
+                <div class="notice-content">
+                    <h3>Important Notice</h3>
+                    <p><strong>For emergency situations involving financial loss or identity theft, please contact your local authorities and financial institutions immediately.</strong></p>
+                    <p>Cyber Sathi is an educational tool and cannot directly intervene in scam incidents or recover lost funds. For immediate assistance with security incidents, please refer to our <a href="incident.html">Emergency Guide</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is Cyber Sathi free to use?</h3>
+                    <p>Yes, Cyber Sathi is completely free to use. We believe digital safety tools should be accessible to everyone.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my data safe when using your tools?</h3>
+                    <p>We prioritize privacy and process information locally in your browser whenever possible. We don't store URLs, messages, or content you analyze.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can Cyber Sathi guarantee a website is safe?</h3>
+                    <p>No. Our analysis is based on observable patterns and indicators. We never claim 100% accuracy. Always verify information independently.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How can I report a new scam pattern?</h3>
+                    <p>You can email us at report@cybersathi.com with details about the scam. While we can't respond to every report, we appreciate the information.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I use Cyber Sathi commercially?</h3>
+                    <p>Cyber Sathi is designed for individual educational use. For commercial or enterprise applications, please contact us to discuss licensing options.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I cite Cyber Sathi in research or publications?</h3>
+                    <p>Please contact us at info@cybersathi.com for citation guidelines and permissions for academic or research use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p>Stay updated with the latest scam alerts, safety tips, and platform updates.</p>
+            <div class="community-links">
+                <a href="#" class="community-link">
+                    <div class="community-icon">🐦</div>
+                    <div class="community-text">
+                        <h3>Twitter</h3>
+                        <p>Follow for scam alerts and tips</p>
+                    </div>
+                </a>
+                <a href="#" class="community-link">
+                    <div class="community-icon">📘</div>
+                    <div class="community-text">
+                        <h3>Facebook</h3>
+                        <p>Join our safety community</p>
+                    </div>
+                </a>
+                <a href="#" class="community-link">
+                    <div class="community-icon">📺</div>
+                    <div class="community-text">
+                        <h3>YouTube</h3>
+                        <p>Watch tutorial videos</p>
+                    </div>
+                </a>
+                <a href="#" class="community-link">
+                    <div class="community-icon">📝</div>
+                    <div class="community-text">
+                        <h3>Blog</h3>
+                        <p>Read in-depth articles</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Stay Safe Online</h2>
+            <p>Use our tools to check suspicious content before you become a victim.</p>
+            <div class="cta-buttons">
+                <a href="scanner.html" class="btn btn-primary">Check URL</a>
+                <a href="message-scanner.html" class="btn btn-secondary">Check Message</a>
+                <a href="scams.html" class="btn btn-secondary">Learn About Scams</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html" class="active">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">For emergency situations, contact local authorities and financial institutions immediately.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Contact form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            const formResult = document.getElementById('form-result');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                formResult.innerHTML = `
+                    <div class="success-message">
+                        <div class="success-icon">✓</div>
+                        <h3>Message Sent Successfully</h3>
+                        <p>Thank you for contacting Cyber Sathi. We'll get back to you as soon as possible.</p>
+                    </div>
+                `;
+                formResult.classList.remove('hidden');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formResult.classList.add('hidden');
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
