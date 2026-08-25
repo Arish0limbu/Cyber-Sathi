@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store Checker | Cyber Sathi</title>
+    <meta name="description" content="Analyze suspicious shopping websites for potential fraud. Check online stores for security risks and scam indicators.">
+    <meta name="keywords" content="online store checker, shopping scam detection, e-commerce safety, fake store analysis">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scanner.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="store-checker.html" class="active">Store Checker</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Online Store Checker</h1>
+            <p>Analyze suspicious shopping websites for potential fraud and security risks</p>
+        </div>
+    </section>
+
+    <!-- Store Checker Section -->
+    <section class="scanner-section">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-input">
+                    <h2>Enter Store URL</h2>
+                    <p>Paste the URL of the shopping website you want to check</p>
+                    
+                    <form id="store-form" class="url-form">
+                        <div class="input-group">
+                            <input 
+                                type="url" 
+                                id="store-url-input" 
+                                placeholder="https://example-store.com" 
+                                aria-label="Store URL to analyze"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary" id="analyze-store-btn">
+                                <span class="btn-text">Analyze Store</span>
+                                <span class="btn-loading hidden">Analyzing...</span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="scanner-info">
+                        <h3>What we check:</h3>
+                        <ul>
+                            <li>HTTPS encryption status</li>
+                            <li>Domain structure and patterns</li>
+                            <li>Suspicious URL characteristics</li>
+                            <li>Payment-related keywords</li>
+                            <li>Domain age indicators (when available)</li>
+                            <li>Contact information presence</li>
+                            <li>Suspicious domain patterns</li>
+                            <li>Known scam patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scanner-result" id="scanner-result">
+                    <div class="result-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"/>
+                            <circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                        <p>Enter a store URL to see the security analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Analysis Result -->
+    <section class="store-analysis-result hidden" id="store-analysis-result">
+        <div class="container">
+            <h2>Store Analysis Result</h2>
+            <div id="store-security-analysis"></div>
+        </div>
+    </section>
+
+    <!-- Store Safety Checklist -->
+    <section class="store-checklist hidden" id="store-checklist">
+        <div class="container">
+            <h2>Store Safety Checklist</h2>
+            <div class="checklist-items" id="checklist-items"></div>
+        </div>
+    </section>
+
+    <!-- What Should I Do -->
+    <section class="action-guide hidden" id="store-action-guide">
+        <div class="container">
+            <div class="guide-card">
+                <h2>What Should I Do?</h2>
+                <div id="store-action-steps"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section class="educational-section">
+        <div class="container">
+            <h2>Understanding Online Shopping Scams</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Common Store Scam Signs</h3>
+                    <ul>
+                        <li><strong>Unrealistic Prices:</strong> Prices that are too good to be true</li>
+                        <li><strong>Poor Website Design:</strong> Unprofessional or copied designs</li>
+                        <li><strong>Limited Contact Info:</strong> No physical address or phone number</li>
+                        <li><strong>Suspicious Payment Methods:</strong> Only accepting wire transfers or crypto</li>
+                        <li><strong>Fake Reviews:</strong> Generic or copied customer reviews</li>
+                        <li><strong>Urgency Tactics:</strong> Limited time offers to pressure buying</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>How to Verify a Store</h3>
+                    <ul>
+                        <li>Check for HTTPS and valid SSL certificate</li>
+                        <li>Look for contact information and verify it</li>
+                        <li>Search for reviews from independent sources</li>
+                        <li>Check the domain registration age</li>
+                        <li>Look for social media presence and activity</li>
+                        <li>Verify the company through official business registries</li>
+                        <li>Start with a small test purchase</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>Safe Shopping Practices</h3>
+                    <ul>
+                        <li>Use credit cards for fraud protection</li>
+                        <li>Avoid stores that only accept wire transfers</li>
+                        <li>Keep records of all transactions</li>
+                        <li>Be cautious of new stores with no history</li>
+                        <li>Trust your instincts if something feels wrong</li>
+                        <li>Use reputable payment platforms when possible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-alert">
+                <div class="privacy-icon">🔒</div>
+                <div class="privacy-text">
+                    <h3>Your Privacy</h3>
+                    <p>Store analysis is performed locally in your browser. We do not store or transmit the store URLs you check to external servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                            <li><a href="store-checker.html" class="active">Store Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that a store is safe or fraudulent. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/scanner.js"></script>
+</body>
+</html>

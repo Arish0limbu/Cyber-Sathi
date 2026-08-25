@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Analyzer | Cyber Sathi</title>
+    <meta name="description" content="Analyze screenshots of suspicious websites, payment screens, messages, and offers for scam indicators.">
+    <meta name="keywords" content="screenshot analysis, scam detection, payment scam detector, message analysis">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scanner.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html" class="active">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Screenshot Analyzer</h1>
+            <p>Analyze screenshots of suspicious websites, payment screens, messages, and offers</p>
+        </div>
+    </section>
+
+    <!-- Screenshot Scanner Section -->
+    <section class="scanner-section">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-input">
+                    <h2>Upload Screenshot</h2>
+                    <p>Upload a screenshot of a suspicious website, payment screen, message, or offer</p>
+                    
+                    <form id="screenshot-form" class="upload-form">
+                        <div class="file-upload" id="screenshot-upload">
+                            <input 
+                                type="file" 
+                                id="screenshot-input" 
+                                accept="image/png, image/jpeg, image/jpg, image/webp"
+                                aria-label="Upload screenshot"
+                            >
+                            <label for="screenshot-input" class="file-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <span>Choose Screenshot</span>
+                                <span class="file-types">PNG, JPG, JPEG, WebP</span>
+                            </label>
+                            <div class="file-preview" id="screenshot-preview"></div>
+                        </div>
+                        
+                        <div class="screenshot-type">
+                            <label for="screenshot-type-select">Screenshot Type:</label>
+                            <select id="screenshot-type-select" aria-label="Select screenshot type">
+                                <option value="website">Website</option>
+                                <option value="payment">Payment Screen</option>
+                                <option value="message">Message/SMS</option>
+                                <option value="email">Email</option>
+                                <option value="shopping">Shopping Page</option>
+                                <option value="social">Social Media Message</option>
+                                <option value="login">Login Page</option>
+                                <option value="investment">Investment Offer</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="analyze-screenshot-btn">
+                            <span class="btn-text">Analyze Screenshot</span>
+                            <span class="btn-loading hidden">Analyzing...</span>
+                        </button>
+                    </form>
+                    
+                    <div class="scanner-info">
+                        <h3>What we check:</h3>
+                        <ul>
+                            <li>Urgency indicators (act now, immediate action)</li>
+                            <li>Financial requests (send money, pay fee)</li>
+                            <li>Credential requests (password, OTP, PIN)</li>
+                            <li>Phishing indicators (fake verification, login requests)</li>
+                            <li>Offer scams (unrealistic discounts, guaranteed profit)</li>
+                            <li>Suspicious URLs and domain patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scanner-result" id="scanner-result">
+                    <div class="result-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <p>Upload a screenshot to see the security analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Analysis Result -->
+    <section class="screenshot-analysis-result hidden" id="screenshot-analysis-result">
+        <div class="container">
+            <h2>Screenshot Analysis Result</h2>
+            <div id="screenshot-security-analysis"></div>
+        </div>
+    </section>
+
+    <!-- Detected Indicators -->
+    <section class="detected-indicators hidden" id="detected-indicators">
+        <div class="container">
+            <h2>Detected Warning Indicators</h2>
+            <div class="indicators-grid" id="indicators-grid"></div>
+        </div>
+    </section>
+
+    <!-- What Should I Do -->
+    <section class="action-guide hidden" id="screenshot-action-guide">
+        <div class="container">
+            <div class="guide-card">
+                <h2>What Should I Do?</h2>
+                <div id="screenshot-action-steps"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section class="educational-section">
+        <div class="container">
+            <h2>Understanding Screenshot Analysis</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>What Screenshot Analysis Does</h3>
+                    <p>Our analyzer looks for common scam patterns and warning signs in screenshots, including urgency language, financial requests, credential harvesting, and phishing indicators.</p>
+                </div>
+                <div class="education-card">
+                    <h3>Common Warning Signs</h3>
+                    <ul>
+                        <li><strong>Urgency:</strong> "Act now," "Last chance," "Immediate action required"</li>
+                        <li><strong>Financial Requests:</strong> "Send money," "Pay fee," "Deposit first"</li>
+                        <li><strong>Credential Requests:</strong> "Password," "OTP," "PIN," "CVV"</li>
+                        <li><strong>Phishing:</strong> Fake verification, suspicious login requests</li>
+                        <li><strong>Offer Scams:</strong> Unrealistic discounts, guaranteed profits</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>Limitations</h3>
+                    <p>Screenshot analysis cannot definitively prove content is fake or malicious. It identifies potential warning signs based on patterns. Always verify information independently through official channels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-alert">
+                <div class="privacy-icon">🔒</div>
+                <div class="privacy-text">
+                    <h3>Your Privacy</h3>
+                    <p>Screenshot analysis is performed locally in your browser. We do not store or transmit the screenshots you upload to external servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html" class="active">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that content is safe or malicious. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/screenshot-scanner.js"></script>
+</body>
+</html>

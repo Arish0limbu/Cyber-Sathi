@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Checker | Cyber Sathi</title>
+    <meta name="description" content="Analyze suspicious SMS, email, and chat messages for scam indicators and phishing attempts.">
+    <meta name="keywords" content="message scanner, SMS analysis, email phishing, scam message detection">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scanner.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html" class="active">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Scam Message Checker</h1>
+            <p>Analyze suspicious SMS, email, and chat messages for scam indicators</p>
+        </div>
+    </section>
+
+    <!-- Message Scanner Section -->
+    <section class="scanner-section">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-input">
+                    <h2>Paste Suspicious Message</h2>
+                    <p>Paste the full message content to analyze for scam indicators</p>
+                    
+                    <form id="message-form" class="message-form">
+                        <div class="message-type-selector">
+                            <label for="message-type">Message Type:</label>
+                            <select id="message-type" aria-label="Select message type">
+                                <option value="sms">SMS</option>
+                                <option value="email">Email</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="messenger">Messenger</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="telegram">Telegram</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="textarea-group">
+                            <textarea 
+                                id="message-input" 
+                                placeholder="Paste the suspicious message here..."
+                                rows="10"
+                                aria-label="Message content to analyze"
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="analyze-message-btn">
+                            <span class="btn-text">Analyze Message</span>
+                            <span class="btn-loading hidden">Analyzing...</span>
+                        </button>
+                    </form>
+                    
+                    <div class="scanner-info">
+                        <h3>What we check:</h3>
+                        <ul>
+                            <li>Urgency and threats</li>
+                            <li>Financial requests</li>
+                            <li>OTP and password requests</li>
+                            <li>Suspicious links</li>
+                            <li>Fake prizes and offers</li>
+                            <li>Job and investment scams</li>
+                            <li>Impersonation language</li>
+                            <li>Phishing indicators</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scanner-result" id="scanner-result">
+                    <div class="result-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <p>Paste a message to see the security analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Analysis Result -->
+    <section class="message-analysis-result hidden" id="message-analysis-result">
+        <div class="container">
+            <h2>Message Analysis Result</h2>
+            <div id="message-security-analysis"></div>
+        </div>
+    </section>
+
+    <!-- Detected Patterns -->
+    <section class="detected-patterns hidden" id="detected-patterns">
+        <div class="container">
+            <h2>Detected Warning Patterns</h2>
+            <div class="patterns-grid" id="patterns-grid"></div>
+        </div>
+    </section>
+
+    <!-- What Should I Do -->
+    <section class="action-guide hidden" id="message-action-guide">
+        <div class="container">
+            <div class="guide-card">
+                <h2>What Should I Do?</h2>
+                <div id="message-action-steps"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section class="educational-section">
+        <div class="container">
+            <h2>Understanding Message Scams</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Common Message Scams</h3>
+                    <ul>
+                        <li><strong>OTP Scams:</strong> Requests to share OTP codes</li>
+                        <li><strong>Banking Scams:</strong> Fake account issues or payment requests</li>
+                        <li><strong>Prize Scams:</strong> Fake lottery or prize winnings</li>
+                        <li><strong>Job Scams:</strong> Fake job offers requesting payment</li>
+                        <li><strong>Investment Scams:</strong> Guaranteed returns on investments</li>
+                        <li><strong>Impersonation:</strong> Fake messages from known contacts</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>Red Flags to Watch For</h3>
+                    <ul>
+                        <li>Urgency ("Act now," "Immediate action required")</li>
+                        <li>Threats ("Account will be closed," "Legal action")</li>
+                        <li>Requests for personal information (OTP, PIN, password)</li>
+                        <li>Too-good-to-be-true offers</li>
+                        <li>Poor grammar and spelling</li>
+                        <li>Suspicious links or attachments</li>
+                        <li>Requests for payment or money transfers</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>How to Protect Yourself</h3>
+                    <ul>
+                        <li>Never share OTPs, PINs, or passwords</li>
+                        <li>Verify senders through official channels</li>
+                        <li>Don't click on suspicious links</li>
+                        <li>Be skeptical of urgent requests</li>
+                        <li>Report and block suspicious senders</li>
+                        <li>Use message scanning tools when in doubt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-alert">
+                <div class="privacy-icon">🔒</div>
+                <div class="privacy-text">
+                    <h3>Your Privacy</h3>
+                    <p>Message analysis is performed locally in your browser. We do not store or transmit the messages you analyze to external servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html" class="active">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that a message is safe or malicious. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/message-scanner.js"></script>
+</body>
+</html>
