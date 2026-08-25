@@ -48,6 +48,15 @@
     .scanner-container {
         grid-template-columns: 1fr;
     }
+
+    .check-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .detection-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
 }
 
 /* Tablets */
