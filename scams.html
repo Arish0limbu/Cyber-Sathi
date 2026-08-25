@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Library | Cyber Sathi</title>
+    <meta name="description" content="Learn about common scams including QR scams, payment scams, online shopping fraud, job scams, investment scams, and more.">
+    <meta name="keywords" content="scam library, common scams, fraud education, scam prevention, QR scams, payment scams">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html" class="active">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Scam Library</h1>
+            <p>Learn about common scams and how to protect yourself</p>
+        </div>
+    </section>
+
+    <!-- Search -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="scam-search" placeholder="Search scams..." aria-label="Search scams">
+                <button id="search-btn" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scam Categories -->
+    <section class="scam-categories">
+        <div class="container">
+            <div class="category-nav">
+                <button class="category-btn active" data-category="all">All Scams</button>
+                <button class="category-btn" data-category="qr">QR Scams</button>
+                <button class="category-btn" data-category="payment">Payment Scams</button>
+                <button class="category-btn" data-category="shopping">Shopping Scams</button>
+                <button class="category-btn" data-category="job">Job Scams</button>
+                <button class="category-btn" data-category="investment">Investment Scams</button>
+                <button class="category-btn" data-category="lottery">Lottery Scams</button>
+                <button class="category-btn" data-category="crypto">Cryptocurrency Scams</button>
+                <button class="category-btn" data-category="support">Fake Support Scams</button>
+                <button class="category-btn" data-category="romance">Romance Scams</button>
+                <button class="category-btn" data-category="otp">OTP Scams</button>
+                <button class="category-btn" data-category="account">Account Takeover</button>
+                <button class="category-btn" data-category="delivery">Delivery Scams</button>
+                <button class="category-btn" data-category="government">Fake Government Messages</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scam Cards -->
+    <section class="scam-library">
+        <div class="container">
+            <div class="scam-grid" id="scam-grid">
+                <!-- QR Scams -->
+                <div class="scam-card" data-category="qr" data-id="qr-scams">
+                    <div class="scam-icon">📱</div>
+                    <h3>QR Code Scams</h3>
+                    <p>Scammers use QR codes to hide malicious URLs that can steal your information or money. Always scan QR codes before clicking.</p>
+                    <div class="scam-details">
+                        <h4>How it works:</h4>
+                        <ul>
+                            <li>Scammers place fake QR codes in public places</li>
+                            <li>Send QR codes via text or email claiming to be payments</li>
+                            <li>QR codes redirect to phishing sites or initiate payments</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Use a QR scanner that shows the destination</li>
+                            <li>Verify where the code leads before interacting</li>
+                            <li>Be suspicious of unsolicited QR codes</li>
+                        </ul>
+                    </div>
+                    <a href="qr-scanner.html" class="btn btn-secondary">Scan QR Code</a>
+                </div>
+
+                <!-- Payment Scams -->
+                <div class="scam-card" data-category="payment" data-id="payment-scams">
+                    <div class="scam-icon">💳</div>
+                    <h3>Payment Scams</h3>
+                    <p>Fraudulent payment requests that trick you into sending money or sharing payment details.</p>
+                    <div class="scam-details">
+                        <h4>Common types:</h4>
+                        <ul>
+                            <li>Fake payment requests with urgency</li>
+                            <li>Requests to share OTP/PIN for payments</li>
+                            <li>Fake invoices with malicious links</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Never share OTPs or PINs</li>
+                            <li>Verify payment requests independently</li>
+                            <li>Check official payment channels</li>
+                        </ul>
+                    </div>
+                    <a href="screenshot-scanner.html" class="btn btn-secondary">Check Payment Screen</a>
+                </div>
+
+                <!-- Shopping Scams -->
+                <div class="scam-card" data-category="shopping" data-id="shopping-scams">
+                    <div class="scam-icon">🛒</div>
+                    <h3>Online Shopping Scams</h3>
+                    <p>Fake online stores that take your money but never deliver products, or deliver counterfeit items.</p>
+                    <div class="scam-details">
+                        <h4>Warning signs:</h4>
+                        <ul>
+                            <li>Unrealistically low prices</li>
+                            <li>Poor website design</li>
+                            <li>Limited contact information</li>
+                            <li>Only accepts wire transfers or crypto</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Research the store before buying</li>
+                            <li>Use secure payment methods</li>
+                            <li>Check for reviews from independent sources</li>
+                        </ul>
+                    </div>
+                    <a href="store-checker.html" class="btn btn-secondary">Check Store</a>
+                </div>
+
+                <!-- Job Scams -->
+                <div class="scam-card" data-category="job" data-id="job-scams">
+                    <div class="scam-icon">💼</div>
+                    <h3>Job Scams</h3>
+                    <p>Fake job offers that request payment or personal information, or promise unrealistic income.</p>
+                    <div class="scam-details">
+                        <h4>Red flags:</h4>
+                        <ul>
+                            <li>Requests for payment to "secure" the job</li>
+                            <li>Guaranteed high income with little work</li>
+                            <li>Poor communication and unprofessional process</li>
+                            <li>Requests for sensitive personal information</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Research the company thoroughly</li>
+                            <li>Never pay for a job opportunity</li>
+                            <li>Verify through official company channels</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Job Message</a>
+                </div>
+
+                <!-- Investment Scams -->
+                <div class="scam-card" data-category="investment" data-id="investment-scams">
+                    <div class="scam-icon">📈</div>
+                    <h3>Investment Scams</h3>
+                    <p>Promises of guaranteed returns or unrealistic profits that are actually fraudulent schemes.</p>
+                    <div class="scam-details">
+                        <h4>Warning signs:</h4>
+                        <ul>
+                            <li>Guaranteed returns with no risk</li>
+                            <li>Pressure to invest quickly</li>
+                            <li>Unregistered investment opportunities</li>
+                            <li>Complex or confusing investment strategies</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>If it sounds too good to be true, it probably is</li>
+                            <li>Verify registration with financial authorities</li>
+                            <li>Consult with registered financial advisors</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Investment Offer</a>
+                </div>
+
+                <!-- Lottery Scams -->
+                <div class="scam-card" data-category="lottery" data-id="lottery-scams">
+                    <div class="scam-icon">🎰</div>
+                    <h3>Lottery/Prize Scams</h3>
+                    <p>Notifications that you've won a lottery or prize, but require payment or personal information to claim it.</p>
+                    <div class="scam-details">
+                        <h4>How it works:</h4>
+                        <ul>
+                            <li>You receive a message about winning a prize</li>
+                            <li>Asked to pay fees or taxes to claim</li>
+                            <li>Requested to provide personal information</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>You can't win a lottery you didn't enter</li>
+                            <li>Never pay to claim a prize</li>
+                            <li>Verify through official lottery organizations</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Prize Message</a>
+                </div>
+
+                <!-- Cryptocurrency Scams -->
+                <div class="scam-card" data-category="crypto" data-id="crypto-scams">
+                    <div class="scam-icon">₿</div>
+                    <h3>Cryptocurrency Scams</h3>
+                    <p>Fraudulent schemes involving fake crypto investments, fake exchanges, or requests for crypto payments.</p>
+                    <div class="scam-details">
+                        <h4>Common types:</h4>
+                        <ul>
+                            <li>Fake crypto exchanges or wallets</li>
+                            <li>Ponzi schemes disguised as crypto investments</li>
+                            <li>Blackmail scams threatening to expose information</li>
+                            <li>Fake celebrity endorsements</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Use reputable, regulated exchanges</li>
+                            <li>Research before investing</li>
+                            <li>Never share private keys or seed phrases</li>
+                        </ul>
+                    </div>
+                    <a href="scanner.html" class="btn btn-secondary">Check Crypto URL</a>
+                </div>
+
+                <!-- Fake Support Scams -->
+                <div class="scam-card" data-category="support" data-id="support-scams">
+                    <div class="scam-icon">🎧</div>
+                    <h3>Fake Customer Support Scams</h3>
+                    <p>Scammers impersonate customer support to gain access to your accounts or personal information.</p>
+                    <div class="scam-details">
+                        <h4>How it works:</h4>
+                        <ul>
+                            <li>Pop-ups claiming your computer has a virus</li>
+                            <li>Calls from "tech support" about issues</li>
+                            <li>Requests for remote access to your device</li>
+                            <li>Asking for payment to fix non-existent issues</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Real companies don't make unsolicited support calls</li>
+                            <li>Never give remote access to your device</li>
+                            <li>Contact support through official channels only</li>
+                        </ul>
+                    </div>
+                    <a href="phishing.html" class="btn btn-secondary">Learn About Phishing</a>
+                </div>
+
+                <!-- Romance Scams -->
+                <div class="scam-card" data-category="romance" data-id="romance-scams">
+                    <div class="scam-icon">❤️</div>
+                    <h3>Romance Scams</h3>
+                    <p>Scammers build fake romantic relationships to gain trust and eventually request money or personal information.</p>
+                    <div class="scam-details">
+                        <h4>Warning signs:</h4>
+                        <ul>
+                            <li>Quick professing of love</li>
+                            <li>Excuses for not meeting in person</li>
+                            <li>Requests for money for emergencies</li>
+                            <li>Inconsistencies in their stories</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Be skeptical of online relationships</li>
+                            <li>Never send money to someone you haven't met</li>
+                            <li>Verify their identity through video calls</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Suspicious Messages</a>
+                </div>
+
+                <!-- OTP Scams -->
+                <div class="scam-card" data-category="otp" data-id="otp-scams">
+                    <div class="scam-icon">🔐</div>
+                    <h3>OTP Scams</h3>
+                    <p>Scammers trick you into sharing One-Time Passwords (OTPs) to gain unauthorized access to your accounts.</p>
+                    <div class="scam-details">
+                        <h4>How it works:</h4>
+                        <ul>
+                            <li>Scammers claim to need OTP for verification</li>
+                            <li>Pretend to be from customer support</li>
+                            <li>Use social engineering to obtain OTPs</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Never share OTPs with anyone</li>
+                            <li>Legitimate organizations never ask for OTPs</li>
+                            <li>If you receive an unexpected OTP, contact your bank</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check OTP Request</a>
+                </div>
+
+                <!-- Account Takeover Scams -->
+                <div class="scam-card" data-category="account" data-id="account-scams">
+                    <div class="scam-icon">👤</div>
+                    <h3>Account Takeover Scams</h3>
+                    <p>Scammers gain access to your accounts through phishing, credential stuffing, or social engineering.</p>
+                    <div class="scam-details">
+                        <h4>How it happens:</h4>
+                        <ul>
+                            <li>Phishing emails stealing login credentials</li>
+                            <li>Using leaked passwords from other sites</li>
+                            <li>Social engineering to reset passwords</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Use unique, strong passwords for each account</li>
+                            <li>Enable two-factor authentication</li>
+                            <li>Be suspicious of login requests</li>
+                        </ul>
+                    </div>
+                    <a href="incident.html" class="btn btn-secondary">Account Compromised?</a>
+                </div>
+
+                <!-- Delivery Scams -->
+                <div class="scam-card" data-category="delivery" data-id="delivery-scams">
+                    <div class="scam-icon">📦</div>
+                    <h3>Delivery Scams</h3>
+                    <p>Fake delivery notifications that contain malicious links or request payment for non-existent packages.</p>
+                    <div class="scam-details">
+                        <h4>Warning signs:</h4>
+                        <ul>
+                            <li>Unexpected delivery notifications</li>
+                            <li>Requests for payment to release packages</li>
+                            <li>Links to fake tracking websites</li>
+                            <li>Poor grammar and spelling</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Track deliveries through official channels only</li>
+                            <li>Don't click on links in unexpected messages</li>
+                            <li>Verify with the sender through official contact</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Delivery Message</a>
+                </div>
+
+                <!-- Fake Government Messages -->
+                <div class="scam-card" data-category="government" data-id="government-scams">
+                    <div class="scam-icon">🏛️</div>
+                    <h3>Fake Government Messages</h3>
+                    <p>Scammers impersonate government agencies to threaten or trick you into paying money or sharing information.</p>
+                    <div class="scam-details">
+                        <h4>Common types:</h4>
+                        <ul>
+                            <li>Fake tax authority threats</li>
+                            <li>False legal action threats</li>
+                            <li>Impersonation of government officials</li>
+                            <li>Fake government grant offers</li>
+                        </ul>
+                        <h4>Protection:</h4>
+                        <ul>
+                            <li>Government agencies don't threaten via phone/message</li>
+                            <li>Verify through official government websites</li>
+                            <li>Never make payments based on threatening messages</li>
+                        </ul>
+                    </div>
+                    <a href="message-scanner.html" class="btn btn-secondary">Check Government Message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Red Flags Section -->
+    <section class="red-flags-section">
+        <div class="container">
+            <h2>Universal Red Flags</h2>
+            <div class="red-flags-grid">
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Urgency</h3>
+                    <p>"Act now," "Immediate action required," "Last chance"</p>
+                </div>
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Threats</h3>
+                    <p>"Account will be closed," "Legal action," "Arrest warrant"</p>
+                </div>
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Too Good to Be True</h3>
+                    <p>Guaranteed returns, free money, unrealistic prizes</p>
+                </div>
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Requests for Sensitive Info</h3>
+                    <p>OTP, PIN, password, bank details, personal information</p>
+                </div>
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Unusual Payment Methods</h3>
+                    <p>Wire transfers, cryptocurrency, gift cards only</p>
+                </div>
+                <div class="red-flag-card">
+                    <div class="flag-icon">🚩</div>
+                    <h3>Poor Communication</h3>
+                    <p>Bad grammar, spelling errors, unprofessional language</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Think You've Encountered a Scam?</h2>
+            <p>Use our tools to analyze suspicious content and learn what to do next.</p>
+            <div class="cta-buttons">
+                <a href="scanner.html" class="btn btn-primary">Check URL</a>
+                <a href="message-scanner.html" class="btn btn-secondary">Check Message</a>
+                <a href="incident.html" class="btn btn-secondary">Emergency Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html" class="active">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">This scam library is for educational purposes. Scammers constantly evolve their tactics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Scam library functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const scamCards = document.querySelectorAll('.scam-card');
+            const searchInput = document.getElementById('scam-search');
+            const searchBtn = document.getElementById('search-btn');
+
+            // Category filtering
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active state
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const category = this.dataset.category;
+
+                    // Filter cards
+                    scamCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                scamCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const details = card.querySelector('.scam-details').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm) || details.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
