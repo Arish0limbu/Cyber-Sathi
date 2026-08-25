@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberSaathi — Your Security Companion</title>
+<meta name="description" content="CyberSaathi scans links for phishing signals, checks how strong your passwords really are, and teaches the habits that keep you safe online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand" style="text-decoration:none;">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.2 3.4 9.9 8 11 4.6-1.1 8-5.8 8-11V5l-8-3z" fill="#04211c"/><path d="M9 12l2 2 4-4" stroke="#04211c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>CyberSaathi<small>YOUR SECURITY COMPANION</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#url-check">Link Scanner</a>
+      <a href="#password-check">Password Check</a>
+      <a href="#academy">Cyber Academy</a>
+      <a href="#url-check" class="nav-cta">Run a scan</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="tag">CyberSaathi · saathi means companion</span>
+        <h1>The friend who checks the link<br>before <em>you</em> click it.</h1>
+        <p class="lede">CyberSaathi reads a URL the way an attacker built it, tells you if a password would survive an actual cracking attempt, and teaches the habits that stop the next scam before it starts.</p>
+        <div class="hero-actions">
+          <a href="#url-check" class="btn btn-primary">Scan a link</a>
+          <a href="#password-check" class="btn btn-ghost">Test a password</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>3</b><span>Detection modules</span></div>
+          <div><b>12+</b><span>Phishing signals checked</span></div>
+          <div><b>0</b><span>Data sent off your device</span></div>
+        </div>
+      </div>
+
+      <div class="hud">
+        <div class="hud-top">
+          <span><span class="hud-dot"></span>SAMPLE READOUT</span>
+          <span>saathi://trust-engine</span>
+        </div>
+        <div class="gauge-wrap">
+          <div class="score-ring" style="width:210px;height:210px;">
+            <svg viewBox="0 0 200 200" width="210" height="210">
+              <circle class="track" cx="100" cy="100" r="86"></circle>
+              <circle class="bar" id="heroRing" cx="100" cy="100" r="86" stroke="#23e6c4"
+                stroke-dasharray="540" stroke-dashoffset="540"></circle>
+            </svg>
+          </div>
+          <div class="gauge-num" id="heroNum">0<span>/100</span></div>
+          <div class="gauge-label">Example trust score</div>
+        </div>
+        <div class="hud-log">
+          <span class="ok">TLS certificate verified</span>
+          <span class="ok">Domain age within normal range</span>
+          <span class="ok">No lookalike character substitution</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- URL PHISHING SCANNER -->
+  <section class="block" id="url-check">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">SCAN.01 · Link Scanner</span>
+        <h2>Paste a link. See what a scammer built it to hide.</h2>
+        <p>CyberSaathi runs the same checks a careful analyst would: the domain, the disguise, the destination. Everything happens right here in your browser — no link is sent anywhere.</p>
+      </div>
+
+      <div class="panel">
+        <div class="tool-grid">
+          <div class="tool-left">
+            <label class="field-label" for="urlInput">Link to check</label>
+            <div class="input-row">
+              <input type="text" id="urlInput" placeholder="https://example.com/account/verify" autocomplete="off" spellcheck="false">
+              <button class="btn btn-primary" id="scanBtn">Scan link</button>
+            </div>
+            <p class="helper">Try one of ours: <button type="button" data-sample="safe">a normal link</button> · <button type="button" data-sample="risky">a suspicious one</button></p>
+
+            <div class="result" id="urlResult">
+              <div class="verdict" id="urlVerdict">
+                <div class="vicon" id="urlVicon"></div>
+                <div>
+                  <strong id="urlVerdictTitle">—</strong>
+                  <small id="urlVerdictSub">—</small>
+                </div>
+              </div>
+              <ul class="checklist" id="urlChecklist"></ul>
+            </div>
+          </div>
+
+          <div class="tool-right">
+            <div class="score-ring">
+              <svg viewBox="0 0 200 200">
+                <circle class="track" cx="100" cy="100" r="86"></circle>
+                <circle class="bar" id="urlRing" cx="100" cy="100" r="86" stroke="#8d9bbd" stroke-dasharray="540" stroke-dashoffset="540"></circle>
+              </svg>
+              <div class="score-center">
+                <b id="urlScoreNum">--</b>
+                <span>Safety score</span>
+              </div>
+            </div>
+            <div class="score-title" id="urlScoreTitle">Waiting for a link</div>
+            <div class="score-sub" id="urlScoreSub">Paste a URL on the left and run the scan to see its safety score here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASSWORD CHECKER -->
+  <section class="block" id="password-check">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag amber">SCAN.02 · Password Check</span>
+        <h2>Would your password survive a real attack?</h2>
+        <p>CyberSaathi estimates crack time the way an attacker would — by length, character variety, and whether it's a password millions of people already reuse. Nothing you type here leaves your browser.</p>
+      </div>
+
+      <div class="panel">
+        <div class="tool-grid">
+          <div class="tool-left">
+            <label class="field-label" for="pwInput">Password to test</label>
+            <div class="pw-input-wrap">
+              <input type="password" id="pwInput" placeholder="Type a password to test it" autocomplete="off" spellcheck="false">
+              <button class="pw-toggle" id="pwToggle" aria-label="Show password" type="button">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+
+            <div class="meter"><div class="meter-bar" id="pwMeterBar"></div></div>
+            <div class="pw-meta">
+              <span id="pwStrengthLabel">Enter a password above</span>
+              <span id="pwEntropy"></span>
+            </div>
+            <p class="helper pw-crack" id="pwCrackTime"></p>
+
+            <ul class="req-grid" id="pwReqs">
+              <li data-req="len"><span class="dot"></span>12+ characters</li>
+              <li data-req="upper"><span class="dot"></span>Uppercase letter</li>
+              <li data-req="lower"><span class="dot"></span>Lowercase letter</li>
+              <li data-req="digit"><span class="dot"></span>Number</li>
+              <li data-req="symbol"><span class="dot"></span>Symbol</li>
+              <li data-req="common"><span class="dot"></span>Not a common password</li>
+            </ul>
+
+            <div class="suggest-box">
+              <code id="suggestedPw">Click generate for a strong password →</code>
+              <div class="suggest-actions">
+                <button class="icon-btn" id="regenBtn" title="Generate new" aria-label="Generate new password" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                </button>
+                <button class="icon-btn" id="copyBtn" title="Copy password" aria-label="Copy password" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-right">
+            <div class="score-ring">
+              <svg viewBox="0 0 200 200">
+                <circle class="track" cx="100" cy="100" r="86"></circle>
+                <circle class="bar" id="pwRing" cx="100" cy="100" r="86" stroke="#8d9bbd" stroke-dasharray="540" stroke-dashoffset="540"></circle>
+              </svg>
+              <div class="score-center">
+                <b id="pwScoreNum">--</b>
+                <span>Strength score</span>
+              </div>
+            </div>
+            <div class="score-title" id="pwScoreTitle">No password yet</div>
+            <div class="score-sub" id="pwScoreSub">Start typing to see a live strength score, or generate a strong one instead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYBER ACADEMY -->
+  <section class="block" id="academy">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag indigo">Cyber Academy</span>
+        <h2>Six habits that stop most attacks before they work.</h2>
+        <p>Tools catch what they're built to catch. These are the instincts that catch everything else. Tap a card to open it.</p>
+      </div>
+
+      <div class="academy-grid" id="academyGrid">
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--coral-dim);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff5c7a" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            </div>
+            <span class="course-level">Beginner</span>
+          </div>
+          <h3>Spot a phishing email</h3>
+          <p>The four tells that give away a fake message, even a well-written one.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>Check the sender's actual address, not just the display name.</li>
+              <li>Urgency is a tactic — "act now or lose access" is designed to stop you thinking.</li>
+              <li>Hover any link before clicking to see where it really goes.</li>
+              <li>Real companies rarely ask for passwords or OTPs by email.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--amber-dim);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffb74d" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <span class="course-level">Beginner</span>
+          </div>
+          <h3>Build a password you'll actually remember</h3>
+          <p>Passphrases beat "P@ssw0rd1" — here's how to make one that's both strong and memorable.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>Four random unrelated words beat eight random characters.</li>
+              <li>Length matters more than complexity — aim for 14+ characters.</li>
+              <li>Never reuse a password across two important accounts.</li>
+              <li>Let a password manager remember the ones you can't.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--teal-dim);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23e6c4" stroke-width="2"><path d="M12 2l8 3v6c0 5.2-3.4 9.9-8 11-4.6-1.1-8-5.8-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <span class="course-level">Essential</span>
+          </div>
+          <h3>Turn on two-factor authentication</h3>
+          <p>Why one extra step blocks the vast majority of account takeovers.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>An authenticator app is safer than SMS codes, which can be intercepted.</li>
+              <li>Start with email, banking, and any account tied to password resets.</li>
+              <li>Save backup codes somewhere offline, not in your inbox.</li>
+              <li>A leaked password alone can't get in once 2FA is on.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--indigo);opacity:0.9;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0f1e" stroke-width="2"><path d="M5 12.5a7 7 0 0114 0M2 9a11 11 0 0120 0M8.5 16a3.5 3.5 0 017 0"/><circle cx="12" cy="20" r="1" fill="#0a0f1e"/></svg>
+            </div>
+            <span class="course-level">Intermediate</span>
+          </div>
+          <h3>Public Wi-Fi: what's actually risky</h3>
+          <p>Less about the coffee-shop network, more about what you do on it.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>Most sites use HTTPS now, which limits what others on the network can see.</li>
+              <li>Avoid logging into banking or sensitive accounts on shared networks.</li>
+              <li>A VPN helps, but a fake "free VPN" app can be worse than no VPN.</li>
+              <li>Turn off auto-connect to open networks you don't recognize.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--coral-dim);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff5c7a" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/><path d="M18 4l2 2-4 4" stroke-dasharray="1 3"/></svg>
+            </div>
+            <span class="course-level">Intermediate</span>
+          </div>
+          <h3>Social engineering tactics to know</h3>
+          <p>Most breaches start with a human being convinced, not a system being hacked.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>Pretexting: a caller invents a believable reason to ask for information.</li>
+              <li>Authority pressure: "this is IT, I need your password to fix it now."</li>
+              <li>Baiting: a free USB drive or download that's actually malware.</li>
+              <li>Verify unexpected requests through a second, known channel first.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="course" tabindex="0">
+          <div class="course-top">
+            <div class="course-icon" style="background:var(--amber-dim);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffb74d" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            </div>
+            <span class="course-level">Essential</span>
+          </div>
+          <h3>Software updates and why they matter</h3>
+          <p>That "remind me later" is often standing between you and a known exploit.</p>
+          <div class="course-toggle">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="course-body">
+            <ul>
+              <li>Most updates patch security flaws that are already public knowledge.</li>
+              <li>Attackers actively scan for devices still running old versions.</li>
+              <li>Turn on automatic updates for your OS, browser, and apps.</li>
+              <li>Uninstall apps you no longer use — they still carry risk.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="academy-cta">
+        <div>
+          <h4>Know a habit worth teaching?</h4>
+          <p>CyberSaathi's academy grows with feedback from people who've actually been targeted.</p>
+        </div>
+        <a href="#top" class="btn btn-primary">Back to top</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="text-decoration:none;">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.2 3.4 9.9 8 11 4.6-1.1 8-5.8 8-11V5l-8-3z" fill="#04211c"/><path d="M9 12l2 2 4-4" stroke="#04211c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>CyberSaathi</span>
+        </div>
+        <p>Built to make three things obvious: whether a link is safe, whether a password will hold, and what to do about both. Everything runs locally in your browser.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Tools</h5>
+        <a href="#url-check">Link Scanner</a>
+        <a href="#password-check">Password Check</a>
+        <a href="#academy">Cyber Academy</a>
+      </div>
+      <div class="foot-col">
+        <h5>Learn</h5>
+        <a href="#academy">Phishing basics</a>
+        <a href="#academy">Password hygiene</a>
+        <a href="#academy">Two-factor auth</a>
+      </div>
+      <div class="foot-col">
+        <h5>CyberSaathi</h5>
+        <a href="#top">About the project</a>
+        <a href="#top">How scoring works</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CyberSaathi. A learning tool, not a substitute for professional security software.</span>
+      <span>Made for people who'd rather check twice than get caught once.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
