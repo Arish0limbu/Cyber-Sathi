@@ -169,6 +169,116 @@ document.addEventListener('DOMContentLoaded', function() {
         return typeIndicators[type] || typeIndicators['other'];
     }
 
+    function performScreenshotAnalysis(file, type) {
+        const indicators = [];
+        let score = 0;
+
+        // OCR-ready: In a real implementation, this would extract text from the image
+        // const extractedText = await extractScreenshotText(file);
+        
+        // For demo purposes, we'll analyze based on the type and simulate detection
+        const typeSpecificIndicators = getTypeSpecificIndicators(type);
+        indicators.push(...typeSpecificIndicators);
+
+        // Common scam indicators
+        const commonIndicators = [
+            { text: 'act now', severity: 'high', points: 15 },
+            { text: 'immediate action', severity: 'high', points: 15 },
+            { text: 'account will be closed', severity: 'high', points: 20 },
+            { text: 'last chance', severity: 'medium', points: 10 },
+            { text: 'send money', severity: 'high', points: 20 },
+            { text: 'pay fee', severity: 'high', points: 15 },
+            { text: 'deposit first', severity: 'high', points: 20 },
+            { text: 'password', severity: 'high', points: 15 },
+            { text: 'otp', severity: 'high', points: 20 },
+            { text: 'pin', severity: 'high', points: 15 },
+            { text: 'cvv', severity: 'high', points: 15 },
+            { text: 'security code', severity: 'high', points: 15 },
+            { text: 'guaranteed profit', severity: 'high', points: 20 },
+            { text: 'free prize', severity: 'medium', points: 10 },
+            { text: 'unrealistic discount', severity: 'medium', points: 10 }
+        ];
+
+        // Simulate random detection for demo
+        commonIndicators.forEach(indicator => {
+            if (Math.random() > 0.7) { // 30% chance of detection for demo
+                indicators.push({
+                    type: indicator.text,
+                    severity: indicator.severity,
+                    description: `Detected "${indicator.text}" - potential scam indicator`
+                });
+                score += indicator.points;
+            }
+        });
+
+        // Cap score at 100
+        score = Math.min(score, 100);
+
+        // Determine risk level
+        let riskLevel;
+        if (score <= 20) {
+            riskLevel = 'LOW RISK';
+        } else if (score <= 40) {
+            riskLevel = 'CAUTION';
+        } else if (score <= 60) {
+            riskLevel = 'SUSPICIOUS';
+        } else if (score <= 80) {
+            riskLevel = 'HIGH RISK';
+        } else {
+            riskLevel = 'VERY HIGH RISK';
+        }
+
+        return {
+            score: score,
+            riskLevel: riskLevel,
+            indicators: indicators,
+            type: type,
+            hasOCR: false // OCR not implemented in demo version
+        };
+    }
+
+    function getTypeSpecificIndicators(type) {
+        const typeIndicators = {
+            'website': [
+                { type: 'Suspicious login form', severity: 'medium', description: 'Login form detected - verify domain carefully' },
+                { type: 'Missing HTTPS indicator', severity: 'medium', description: 'No visible HTTPS - proceed with caution' }
+            ],
+            'payment': [
+                { type: 'Payment request detected', severity: 'high', description: 'Payment screen - verify recipient independently' },
+                { type: 'Urgency language', severity: 'high', description: 'Urgent payment language detected' }
+            ],
+            'message': [
+                { type: 'Suspicious message format', severity: 'medium', description: 'Message format detected - verify sender' },
+                { type: 'Request for personal info', severity: 'high', description: 'Request for personal information detected' }
+            ],
+            'email': [
+                { type: 'Email format detected', severity: 'medium', description: 'Email content - verify sender address' },
+                { type: 'Suspicious links', severity: 'high', description: 'Links detected - verify before clicking' }
+            ],
+            'shopping': [
+                { type: 'Shopping interface', severity: 'medium', description: 'Shopping page - verify store legitimacy' },
+                { type: 'Discount offers', severity: 'medium', description: 'Discount language detected - verify if realistic' }
+            ],
+            'social': [
+                { type: 'Social media message', severity: 'medium', description: 'Social media content - verify account' },
+                { type: 'Verification request', severity: 'high', description: 'Account verification request - verify through official app' }
+            ],
+            'login': [
+                { type: 'Login page detected', severity: 'high', description: 'Login form - verify URL and domain carefully' },
+                { type: 'Credential request', severity: 'high', description: 'Requests for login credentials' }
+            ],
+            'investment': [
+                { type: 'Investment offer', severity: 'high', description: 'Investment opportunity - verify through official channels' },
+                { type: 'Guaranteed returns', severity: 'high', description: 'Guaranteed return claims - often unrealistic' }
+            ],
+            'other': [
+                { type: 'Suspicious content', severity: 'medium', description: 'Suspicious content detected - verify independently' }
+            ]
+        };
+
+        return typeIndicators[type] || typeIndicators['other'];
+    }
+
     function displayScreenshotResults(analysis) {
         // Display in scanner result
         if (scannerResult) {
@@ -224,6 +334,50 @@ document.addEventListener('DOMContentLoaded', function() {
             
             document.getElementById('screenshot-action-steps').innerHTML = CyberSathiUtils.createActionGuide(steps);
         }
+    }
+
+    function analyzePaymentScam(file) {
+        const analyzeBtn = document.getElementById('analyze-payment-btn');
+        
+        if (!file) {
+            CyberSathiUtils.showToast('Please select a payment screenshot', 'error');
+            return;
+        }
+        
+        // Show loading state
+        if (analyzeBtn) {
+            CyberSathiUtils.showLoading(analyzeBtn);
+        }
+
+        // Simulate analysis
+        setTimeout(() => {
+            const result = document.getElementById('payment-scam-result');
+            if (result) {
+                CyberSathiUtils.show(result);
+                result.innerHTML = `
+                    <div class="security-analysis">
+                        <h2>⚠ POTENTIAL PAYMENT SCAM</h2>
+                        <div class="warnings-list">
+                            <h3>Warning signs detected:</h3>
+                            <ul>
+                                <li>⚠ Requests sensitive information</li>
+                                <li>⚠ Urgent payment language</li>
+                                <li>⚠ Destination could not be verified</li>
+                            </ul>
+                        </div>
+                        <div class="recommendation">
+                            <h3>Recommendation:</h3>
+                            <p>Do not send money or share OTP/PIN until the recipient and payment details are independently verified through official channels.</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Hide loading state
+            if (analyzeBtn) {
+                CyberSathiUtils.hideLoading(analyzeBtn);
+            }
+        }, 2000);
     }
 });
 

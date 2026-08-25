@@ -31,14 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Add https:// if missing for validation
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+            url = 'https://' + url;
+        }
+
         if (!CyberSathiUtils.isValidUrl(url)) {
             CyberSathiUtils.showToast('Please enter a valid URL', 'error');
             return;
         }
 
         // Show loading state
-        if (scanBtn) {
-            CyberSathiUtils.showLoading(scanBtn);
+        const targetBtn = isStore ? document.getElementById('analyze-store-btn') : scanBtn;
+        if (targetBtn) {
+            CyberSathiUtils.showLoading(targetBtn);
         }
 
         // Simulate analysis delay
@@ -47,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
             displayResults(analysis);
 
             // Hide loading state
-            if (scanBtn) {
-                CyberSathiUtils.hideLoading(scanBtn);
+            if (targetBtn) {
+                CyberSathiUtils.hideLoading(targetBtn);
             }
         }, 1500);
     }

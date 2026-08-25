@@ -68,11 +68,17 @@ document.addEventListener('DOMContentLoaded', function() {
         quickUrlForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const urlInput = document.getElementById('quick-url-input');
-            const quickUrlResult = document.getElementById('quick-url-result');
             
             if (urlInput && urlInput.value) {
+                // Add https:// if missing
+                let url = urlInput.value.trim();
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
                 // Redirect to scanner page with the URL
-                window.location.href = `scanner.html?url=${encodeURIComponent(urlInput.value)}`;
+                window.location.href = `scanner.html?url=${encodeURIComponent(url)}`;
+            } else {
+                CyberSathiUtils.showToast('Please enter a URL', 'error');
             }
         });
     }
@@ -190,7 +196,12 @@ const CyberSathiUtils = {
     // Validate URL format
     isValidUrl: function(string) {
         try {
-            new URL(string);
+            // Add https:// if missing for validation
+            let testUrl = string;
+            if (!string.startsWith('http://') && !string.startsWith('https://')) {
+                testUrl = 'https://' + string;
+            }
+            new URL(testUrl);
             return true;
         } catch (_) {
             return false;
@@ -270,9 +281,17 @@ const CyberSathiUtils = {
 
     // Show toast notification
     showToast: function(message, type = 'info') {
+        // Remove existing toast if any
+        const existingToast = document.querySelector('.toast');
+        if (existingToast) {
+            document.body.removeChild(existingToast);
+        }
+
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
         toast.textContent = message;
+        
+        // Set inline styles for the toast
         toast.style.cssText = `
             position: fixed;
             bottom: 20px;
@@ -284,6 +303,8 @@ const CyberSathiUtils = {
             color: var(--text-primary);
             z-index: 10000;
             animation: slideIn 0.3s ease;
+            max-width: 300px;
+            word-wrap: break-word;
         `;
         
         document.body.appendChild(toast);
@@ -291,7 +312,9 @@ const CyberSathiUtils = {
         setTimeout(() => {
             toast.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => {
-                document.body.removeChild(toast);
+                if (document.body.contains(toast)) {
+                    document.body.removeChild(toast);
+                }
             }, 300);
         }, 3000);
     }

@@ -32,6 +32,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Payment scam form
+    const paymentScamForm = document.getElementById('payment-scam-form');
+    if (paymentScamForm) {
+        paymentScamForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const paymentFileInput = document.getElementById('payment-file-input');
+            const file = paymentFileInput.files[0];
+            if (file) {
+                analyzePaymentScam(file);
+            } else {
+                CyberSathiUtils.showToast('Please select a payment screenshot', 'error');
+            }
+        });
+    }
+
+    // Handle payment file preview
+    const paymentFileInput = document.getElementById('payment-file-input');
+    if (paymentFileInput) {
+        paymentFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const preview = document.getElementById('payment-preview');
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Payment Screenshot Preview">`;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     // QR upload form submission
     if (qrUploadForm) {
         qrUploadForm.addEventListener('submit', function(e) {
@@ -172,6 +205,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
+    // Include the URL analysis function from scanner.js
+    function performUrlAnalysis(url) {
+        const warnings = [];
+        let score = 0;
+        const domain = CyberSathiUtils.extractDomain(url);
+
+        // Basic checks
+        if (!url.startsWith('https://')) {
+            warnings.push('⚠ No HTTPS encryption');
+            score += 15;
+        }
+
+        if (url.includes('payment') || url.includes('login') || url.includes('verify')) {
+            warnings.push('⚠ Payment/login-related destination');
+            score += 15;
+        }
+
+        if (url.includes('bit.ly') || url.includes('tinyurl')) {
+            warnings.push('⚠ URL shortener detected (cannot see final destination)');
+            score += 20;
+        }
+
+        // Cap score at 100
+        score = Math.min(score, 100);
+
+        // Determine risk level
+        let riskLevel;
+        if (score <= 20) {
+            riskLevel = 'LOW RISK';
+        } else if (score <= 40) {
+            riskLevel = 'CAUTION';
+        } else if (score <= 60) {
+            riskLevel = 'SUSPICIOUS';
+        } else if (score <= 80) {
+            riskLevel = 'HIGH RISK';
+        } else {
+            riskLevel = 'VERY HIGH RISK';
+        }
+
+        return {
+            url: url,
+            domain: domain,
+            score: score,
+            riskLevel: riskLevel,
+            warnings: warnings
+        };
+    }
+
     function simulateQrDecoding(file) {
         // In a real implementation, this would use a library like jsQR
         // For demo purposes, we'll return a simulated destination
@@ -277,6 +358,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function analyzePaymentScam(file) {
         const analyzeBtn = document.getElementById('analyze-payment-btn');
+        
+        if (!file) {
+            CyberSathiUtils.showToast('Please select a payment screenshot', 'error');
+            return;
+        }
         
         // Show loading state
         if (analyzeBtn) {

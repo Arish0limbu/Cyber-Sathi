@@ -399,6 +399,24 @@ a:hover {
     display: none !important;
 }
 
+/* Button Loading State */
+.btn .btn-loading {
+    display: none;
+}
+
+.btn.loading .btn-text {
+    display: none;
+}
+
+.btn.loading .btn-loading {
+    display: inline;
+}
+
+/* Loading Spinner */
+.loading::after {
+    display: block;
+}
+
 /* Statistics Section */
 .statistics {
     padding: 4rem 0;
@@ -932,3 +950,46 @@ a:hover {
 .mb-1 { margin-bottom: 1rem; }
 .mb-2 { margin-bottom: 2rem; }
 .mb-3 { margin-bottom: 3rem; }
+
+/* Toast Notifications */
+.toast {
+    box-shadow: var(--shadow-lg);
+}
+
+.toast-error {
+    border-color: var(--danger-color);
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.toast-success {
+    border-color: var(--success-color);
+    background: rgba(0, 204, 102, 0.1);
+}
+
+.toast-warning {
+    border-color: var(--warning-color);
+    background: rgba(255, 165, 0, 0.1);
+}
+
+/* Toast Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
