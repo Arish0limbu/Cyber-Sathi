@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Sathi | Your Digital Safety Companion</title>
+    <meta name="description" content="Cyber Sathi helps you check suspicious links, QR codes, screenshots, and messages before they put your information or money at risk. Think Before You Click.">
+    <meta name="keywords" content="cybersecurity, phishing detection, QR code safety, scam protection, URL checker, digital safety">
+    <meta name="author" content="Cyber Sathi">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Cyber Sathi | Your Digital Safety Companion">
+    <meta property="og:description" content="Check suspicious links, QR codes, screenshots, and messages before they put your information or money at risk.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybersathi.github.io">
+    <meta property="og:image" content="assets/images/cyber-sathi-og.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cyber Sathi | Your Digital Safety Companion">
+    <meta name="twitter:description" content="Think Before You Click. Check suspicious links, QR codes, and messages.">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Think Before You Click.</h1>
+                    <p class="hero-subtitle">Cyber Sathi helps you check suspicious links, QR codes, screenshots, and messages before they put your information or money at risk.</p>
+                    <div class="hero-buttons">
+                        <a href="scanner.html" class="btn btn-primary">Check Now</a>
+                        <a href="scams.html" class="btn btn-secondary">Learn About Scams</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <svg class="cyber-shield" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="90" stroke="#00d4ff" stroke-width="2" opacity="0.3"/>
+                        <circle cx="100" cy="100" r="70" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+                        <path d="M100 20 L180 60 L180 140 L100 180 L20 140 L20 60 Z" stroke="#00d4ff" stroke-width="2" fill="rgba(0,212,255,0.1)"/>
+                        <path d="M100 40 L160 70 L160 130 L100 160 L40 130 L40 70 Z" stroke="#00ff88" stroke-width="2" fill="rgba(0,255,136,0.1)"/>
+                        <circle cx="100" cy="100" r="30" stroke="#00ff88" stroke-width="3"/>
+                        <path d="M85 100 L95 110 L115 90" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="100" cy="100" r="5" fill="#00d4ff"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Check Center -->
+    <section class="quick-check">
+        <div class="container">
+            <h2>What do you want to check?</h2>
+            <div class="check-cards">
+                <a href="scanner.html" class="check-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </div>
+                    <h3>Check URL</h3>
+                    <p>Analyze a suspicious website URL</p>
+                </a>
+                
+                <a href="qr-scanner.html" class="check-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </div>
+                    <h3>Check QR</h3>
+                    <p>Upload or scan a QR code and analyze it</p>
+                </a>
+                
+                <a href="screenshot-scanner.html" class="check-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <h3>Check Screenshot</h3>
+                    <p>Upload a screenshot of suspicious content</p>
+                </a>
+                
+                <a href="message-scanner.html" class="check-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Check Message</h3>
+                    <p>Paste suspicious SMS, email, or messages</p>
+                </a>
+                
+                <a href="store-checker.html" class="check-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"/>
+                            <circle cx="20" cy="21" r="1"/>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                        </svg>
+                    </div>
+                    <h3>Check Online Store</h3>
+                    <p>Analyze suspicious shopping websites</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- URL Scanner Section -->
+    <section class="url-scanner-section">
+        <div class="container">
+            <div class="scanner-preview">
+                <h2>Quick URL Check</h2>
+                <p>Paste a URL to instantly check for security risks</p>
+                <form id="quick-url-form" class="quick-url-form">
+                    <input type="url" id="quick-url-input" placeholder="https://example.com" aria-label="URL to check" required>
+                    <button type="submit" class="btn btn-primary">Check URL</button>
+                </form>
+                <div id="quick-url-result" class="quick-url-result hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Statistics Dashboard -->
+    <section class="statistics">
+        <div class="container">
+            <h2>Cyber Sathi Security Center</h2>
+            <p class="stats-disclaimer">Demo statistics for illustration purposes</p>
+            <div class="stats-dashboard">
+                <div class="stats-actions">
+                    <a href="scanner.html" class="stat-action">Check URL</a>
+                    <a href="qr-scanner.html" class="stat-action">Scan QR</a>
+                    <a href="screenshot-scanner.html" class="stat-action">Analyze Screenshot</a>
+                    <a href="message-scanner.html" class="stat-action">Check Message</a>
+                </div>
+                <div class="stats-chart">
+                    <h3>Recent Threat Types (Demo Data)</h3>
+                    <div class="stat-bar">
+                        <span class="stat-label">Phishing</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 80%"></div>
+                        </div>
+                        <span class="stat-value">80%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">QR Scams</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="stat-value">60%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">Shopping Scams</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 50%"></div>
+                        </div>
+                        <span class="stat-value">50%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">Payment Scams</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 70%"></div>
+                        </div>
+                        <span class="stat-value">70%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Cyber Sathi Detects -->
+    <section class="detection">
+        <div class="container">
+            <h2>What Cyber Sathi Detects</h2>
+            <div class="detection-grid">
+                <div class="detection-item">
+                    <div class="detection-icon">🔗</div>
+                    <h3>Suspicious URLs</h3>
+                    <p>Identifies potentially harmful links and phishing websites</p>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-icon">📱</div>
+                    <h3>QR Code Scams</h3>
+                    <p>Analyzes QR codes to reveal hidden malicious destinations</p>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-icon">🖼</div>
+                    <h3>Suspicious Screenshots</h3>
+                    <p>Detects warning signs in payment screens and messages</p>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-icon">💬</div>
+                    <h3>Scam Messages</h3>
+                    <p>Identifies suspicious SMS, emails, and chat messages</p>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-icon">🛒</div>
+                    <h3>Fake Stores</h3>
+                    <p>Warns about potentially fraudulent shopping websites</p>
+                </div>
+                <div class="detection-item">
+                    <div class="detection-icon">🎣</div>
+                    <h3>Phishing Attempts</h3>
+                    <p>Detects fake login pages and verification requests</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Sections -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-block">
+                <div class="feature-content">
+                    <h2>QR Scam Protection</h2>
+                    <p>QR codes can hide malicious links. Scan them before you click to see where they really lead.</p>
+                    <a href="qr-scanner.html" class="btn btn-primary">Scan QR Code</a>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="10" y="10" width="30" height="30"/>
+                        <rect x="60" y="10" width="30" height="30"/>
+                        <rect x="10" y="60" width="30" height="30"/>
+                        <rect x="60" y="60" width="30" height="30"/>
+                        <path d="M50 50 L70 30" stroke="#ff6b6b" stroke-width="3"/>
+                        <circle cx="70" cy="30" r="5" fill="#ff6b6b"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section alt">
+        <div class="container">
+            <div class="feature-block">
+                <div class="feature-visual">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="10" y="20" width="80" height="60" rx="5"/>
+                        <rect x="20" y="30" width="30" height="20"/>
+                        <line x1="20" y1="60" x2="80" y2="60"/>
+                        <line x1="20" y1="70" x2="60" y2="70"/>
+                    </svg>
+                </div>
+                <div class="feature-content">
+                    <h2>Screenshot Protection</h2>
+                    <p>Upload screenshots of suspicious payment screens, messages, or offers to detect warning signs.</p>
+                    <a href="screenshot-scanner.html" class="btn btn-primary">Analyze Screenshot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="container">
+            <div class="feature-block">
+                <div class="feature-content">
+                    <h2>Message Protection</h2>
+                    <p>Paste suspicious messages to detect urgency, threats, financial requests, and other scam indicators.</p>
+                    <a href="message-scanner.html" class="btn btn-primary">Check Message</a>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 20 L90 20 L90 70 L50 90 L10 70 Z"/>
+                        <circle cx="30" cy="45" r="5"/>
+                        <circle cx="50" cy="45" r="5"/>
+                        <circle cx="70" cy="45" r="5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Scams -->
+    <section class="common-scams">
+        <div class="container">
+            <h2>Common Scams to Watch For</h2>
+            <div class="scam-grid">
+                <div class="scam-card">
+                    <h3>QR Payment Scams</h3>
+                    <p>Scammers send fake QR codes claiming to be payment requests</p>
+                    <a href="scams.html#qr-scams" class="link">Learn more →</a>
+                </div>
+                <div class="scam-card">
+                    <h3>Phishing Links</h3>
+                    <p>Fake websites that steal your login credentials</p>
+                    <a href="scams.html#phishing" class="link">Learn more →</a>
+                </div>
+                <div class="scam-card">
+                    <h3>Job Scams</h3>
+                    <p>Fake job offers that request payment or personal information</p>
+                    <a href="scams.html#job-scams" class="link">Learn more →</a>
+                </div>
+                <div class="scam-card">
+                    <h3>Investment Scams</h3>
+                    <p>Promises of guaranteed returns that are too good to be true</p>
+                    <a href="scams.html#investment-scams" class="link">Learn more →</a>
+                </div>
+                <div class="scam-card">
+                    <h3>OTP Scams</h3>
+                    <p>Requests to share OTPs for verification or payments</p>
+                    <a href="scams.html#otp-scams" class="link">Learn more →</a>
+                </div>
+                <div class="scam-card">
+                    <h3>Shopping Scams</h3>
+                    <p>Fake online stores with unrealistic discounts</p>
+                    <a href="scams.html#shopping-scams" class="link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Content</h3>
+                    <p>Paste a URL, upload a QR code or screenshot, or enter a message</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Analysis</h3>
+                    <p>Our system analyzes patterns, checks against threat indicators, and identifies risks</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Results</h3>
+                    <p>Receive a risk assessment with clear explanations and recommendations</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Stay Safe</h3>
+                    <p>Follow our recommendations to protect yourself from potential threats</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Tips -->
+    <section class="safety-tips">
+        <div class="container">
+            <h2>Safety Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🔒</div>
+                    <h3>Verify URLs</h3>
+                    <p>Always check the domain name carefully before entering credentials</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📱</div>
+                    <h3>Scan QR Codes</h3>
+                    <p>Use a QR scanner to check where the code leads before clicking</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🚫</div>
+                    <h3>Never Share OTPs</h3>
+                    <p>Legitimate organizations will never ask for your OTP</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⏰</div>
+                    <h3>Watch for Urgency</h3>
+                    <p>Scammers create false urgency to make you act without thinking</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💰</div>
+                    <h3>Too Good to Be True</h3>
+                    <p>If an offer seems unrealistic, it probably is</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📞</div>
+                    <h3>Verify Independently</h3>
+                    <p>Contact organizations through official channels, not links in messages</p>
+                </div>
+            </div>
+            <div class="tips-cta">
+                <a href="safety-tips.html" class="btn btn-secondary">View All Safety Tips</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Guide -->
+    <section class="emergency">
+        <div class="container">
+            <h2>Emergency Incident Guide</h2>
+            <p>If you think you've been targeted by a scam, act quickly</p>
+            <div class="emergency-actions">
+                <a href="incident.html" class="emergency-card">
+                    <h3>I Clicked a Suspicious Link</h3>
+                    <p>Immediate steps to take</p>
+                </a>
+                <a href="incident.html" class="emergency-card">
+                    <h3>I Entered My Password</h3>
+                    <p>How to secure your accounts</p>
+                </a>
+                <a href="incident.html" class="emergency-card">
+                    <h3>I Shared an OTP</h3>
+                    <p>Protective actions to take</p>
+                </a>
+                <a href="incident.html" class="emergency-card">
+                    <h3>I Sent Money to a Scammer</h3>
+                    <p>What to do next</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy">
+        <div class="container">
+            <h2>Your Privacy Matters</h2>
+            <div class="privacy-features">
+                <div class="privacy-item">
+                    <div class="privacy-icon">🔒</div>
+                    <h3>Local Processing</h3>
+                    <p>Analysis happens in your browser when possible</p>
+                </div>
+                <div class="privacy-item">
+                    <div class="privacy-icon">🗑️</div>
+                    <h3>No Data Storage</h3>
+                    <p>We don't permanently store your scanned URLs or messages</p>
+                </div>
+                <div class="privacy-item">
+                    <div class="privacy-icon">🛡️</div>
+                    <h3>No Credential Collection</h3>
+                    <p>We never ask for passwords, OTPs, or banking details</p>
+                </div>
+                <div class="privacy-item">
+                    <div class="privacy-icon">📤</div>
+                    <h3>No Automatic Uploads</h3>
+                    <p>Screenshots are only analyzed when you choose to upload them</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Check. Understand. Stay Safe.</h2>
+            <p>Don't let scammers catch you off guard. Check suspicious content before you click.</p>
+            <div class="cta-buttons">
+                <a href="scanner.html" class="btn btn-primary">Start Checking Now</a>
+                <a href="about.html" class="btn btn-secondary">Learn More About Cyber Sathi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                            <li><a href="store-checker.html">Store Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that a website, QR code, screenshot, or message is safe or malicious. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+</body>
+</html>

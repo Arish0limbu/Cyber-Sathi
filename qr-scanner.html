@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner | Cyber Sathi</title>
+    <meta name="description" content="Scan and analyze QR codes for security risks. Check if QR codes lead to malicious websites or scams.">
+    <meta name="keywords" content="QR scanner, QR code security, QR code analysis, phishing QR codes">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scanner.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html">URL Scanner</a></li>
+                <li><a href="qr-scanner.html" class="active">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>QR Code Security Center</h1>
+            <p>Scan QR codes to reveal hidden destinations and analyze for security risks</p>
+        </div>
+    </section>
+
+    <!-- QR Scanner Section -->
+    <section class="scanner-section">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-input">
+                    <h2>Choose Scan Method</h2>
+                    
+                    <!-- Upload Method -->
+                    <div class="scan-method">
+                        <h3>Upload QR Code Image</h3>
+                        <p>Upload a screenshot or image of a QR code</p>
+                        <form id="qr-upload-form" class="upload-form">
+                            <div class="file-upload" id="file-upload">
+                                <input 
+                                    type="file" 
+                                    id="qr-file-input" 
+                                    accept="image/png, image/jpeg, image/jpg, image/webp"
+                                    aria-label="Upload QR code image"
+                                >
+                                <label for="qr-file-input" class="file-label">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+                                    <span>Choose QR Code Image</span>
+                                    <span class="file-types">PNG, JPG, JPEG, WebP</span>
+                                </label>
+                                <div class="file-preview" id="file-preview"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="analyze-qr-btn">
+                                <span class="btn-text">Analyze QR Code</span>
+                                <span class="btn-loading hidden">Analyzing...</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Camera Method -->
+                    <div class="scan-method">
+                        <h3>Scan with Camera</h3>
+                        <p>Use your device camera to scan QR codes directly</p>
+                        <button id="camera-btn" class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                            <span>Start Camera Scanner</span>
+                        </button>
+                        <div id="camera-container" class="camera-container hidden">
+                            <video id="camera-feed" playsinline></video>
+                            <canvas id="camera-canvas" class="hidden"></canvas>
+                            <button id="capture-btn" class="btn btn-primary">Capture QR Code</button>
+                            <button id="stop-camera-btn" class="btn btn-secondary">Stop Camera</button>
+                        </div>
+                    </div>
+
+                    <div class="scanner-info">
+                        <h3>What we check:</h3>
+                        <ul>
+                            <li>QR code destination URL</li>
+                            <li>URL security analysis</li>
+                            <li>Suspicious domain patterns</li>
+                            <li>Payment-related destinations</li>
+                            <li>Unusual URL structures</li>
+                            <li>Hidden redirects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scanner-result" id="scanner-result">
+                    <div class="result-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        <p>Upload or scan a QR code to see the security analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Analysis Result -->
+    <section class="qr-analysis-result hidden" id="qr-analysis-result">
+        <div class="container">
+            <h2>QR Code Result</h2>
+            <div class="qr-result-card">
+                <div class="qr-destination">
+                    <h3>QR Destination</h3>
+                    <div id="qr-destination-url" class="destination-url"></div>
+                </div>
+                <div id="qr-security-analysis"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fake QR Payment Scam Detector -->
+    <section class="payment-scam-detector">
+        <div class="container">
+            <h2>Could this QR payment screen be fake?</h2>
+            <p>Upload a screenshot of a payment screen to check for warning signs</p>
+            <form id="payment-scam-form" class="upload-form">
+                <div class="file-upload" id="payment-upload">
+                    <input 
+                        type="file" 
+                        id="payment-file-input" 
+                        accept="image/png, image/jpeg, image/jpg, image/webp"
+                        aria-label="Upload payment screenshot"
+                    >
+                    <label for="payment-file-input" class="file-label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <span>Upload Payment Screenshot</span>
+                        <span class="file-types">PNG, JPG, JPEG, WebP</span>
+                    </label>
+                    <div class="file-preview" id="payment-preview"></div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="analyze-payment-btn">
+                    <span class="btn-text">Analyze Payment Screen</span>
+                    <span class="btn-loading hidden">Analyzing...</span>
+                </button>
+            </form>
+            <div id="payment-scam-result" class="payment-scam-result hidden"></div>
+        </div>
+    </section>
+
+    <!-- What Should I Do -->
+    <section class="action-guide hidden" id="qr-action-guide">
+        <div class="container">
+            <div class="guide-card">
+                <h2>What Should I Do?</h2>
+                <div id="qr-action-steps"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section class="educational-section">
+        <div class="container">
+            <h2>Understanding QR Code Risks</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>What are QR Code Scams?</h3>
+                    <p>Scammers use QR codes to hide malicious URLs. When you scan the code, it may direct you to phishing sites, download malware, or initiate unwanted payments.</p>
+                </div>
+                <div class="education-card">
+                    <h3>Common QR Threats</h3>
+                    <ul>
+                        <li><strong>Phishing URLs:</strong> Fake login pages that steal credentials</li>
+                        <li><strong>Payment Scams:</strong> QR codes that initiate unauthorized payments</li>
+                        <li><strong>Malware:</strong> Codes that download harmful software</li>
+                        <li><strong>Fake Apps:</strong> Redirects to malicious app downloads</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>How to Stay Safe</h3>
+                    <ul>
+                        <li>Always verify where a QR code leads before interacting</li>
+                        <li>Be cautious of QR codes in public places</li>
+                        <li>Don't scan QR codes from unknown sources</li>
+                        <li>Use a QR scanner that shows the destination URL</li>
+                        <li>Be suspicious of QR codes requesting payments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-alert">
+                <div class="privacy-icon">🔒</div>
+                <div class="privacy-text">
+                    <h3>Your Privacy</h3>
+                    <p>QR code analysis is performed locally in your browser. We do not store or transmit the QR codes you scan to external servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html" class="active">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that a QR code is safe or malicious. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/qr-scanner.js"></script>
+</body>
+</html>

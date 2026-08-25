@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Scanner | Cyber Sathi</title>
+    <meta name="description" content="Analyze suspicious website URLs for security risks. Check for phishing, scams, and malicious links.">
+    <meta name="keywords" content="URL scanner, link checker, phishing detection, security analysis">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scanner.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    <span>Cyber Sathi</span>
+                </a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="scanner.html" class="active">URL Scanner</a></li>
+                <li><a href="qr-scanner.html">QR Scanner</a></li>
+                <li><a href="screenshot-scanner.html">Screenshot</a></li>
+                <li><a href="message-scanner.html">Message Check</a></li>
+                <li><a href="scams.html">Scam Library</a></li>
+                <li><a href="incident.html">Emergency Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>URL Scanner</h1>
+            <p>Analyze suspicious website URLs for potential security risks</p>
+        </div>
+    </section>
+
+    <!-- Scanner Section -->
+    <section class="scanner-section">
+        <div class="container">
+            <div class="scanner-container">
+                <div class="scanner-input">
+                    <h2>Enter URL to Analyze</h2>
+                    <form id="url-form" class="url-form">
+                        <div class="input-group">
+                            <input 
+                                type="url" 
+                                id="url-input" 
+                                placeholder="https://example.com" 
+                                aria-label="URL to analyze"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary" id="scan-btn">
+                                <span class="btn-text">Analyze URL</span>
+                                <span class="btn-loading hidden">Analyzing...</span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="scanner-info">
+                        <h3>What we check:</h3>
+                        <ul>
+                            <li>URL format and structure</li>
+                            <li>HTTPS encryption</li>
+                            <li>Domain patterns and spelling</li>
+                            <li>Suspicious keywords</li>
+                            <li>IP-based URLs</li>
+                            <li>Punycode domains</li>
+                            <li>Excessive subdomains</li>
+                            <li>Suspicious ports</li>
+                            <li>Redirect patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scanner-result" id="scanner-result">
+                    <div class="result-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <p>Enter a URL above to see the security analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- URL Analysis Details -->
+    <section class="analysis-details hidden" id="analysis-details">
+        <div class="container">
+            <h2>Detailed Analysis</h2>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h3>URL Structure</h3>
+                    <div id="url-structure"></div>
+                </div>
+                <div class="analysis-card">
+                    <h3>Security Indicators</h3>
+                    <div id="security-indicators"></div>
+                </div>
+                <div class="analysis-card">
+                    <h3>Risk Factors</h3>
+                    <div id="risk-factors"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Should I Do -->
+    <section class="action-guide hidden" id="action-guide">
+        <div class="container">
+            <div class="guide-card">
+                <h2>What Should I Do?</h2>
+                <div id="action-steps"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Section -->
+    <section class="educational-section">
+        <div class="container">
+            <h2>Understanding URL Risks</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>What is a Suspicious URL?</h3>
+                    <p>Suspicious URLs may contain malicious content designed to steal your information or install harmful software. They often mimic legitimate websites but have subtle differences.</p>
+                </div>
+                <div class="education-card">
+                    <h3>Common URL Threats</h3>
+                    <ul>
+                        <li><strong>Phishing:</strong> Fake websites that steal credentials</li>
+                        <li><strong>Malware:</strong> Sites that download harmful software</li>
+                        <li><strong>Scams:</strong> Fraudulent sites designed to deceive</li>
+                        <li><strong>Redirects:</strong> URLs that redirect to malicious sites</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>How to Stay Safe</h3>
+                    <ul>
+                        <li>Always verify the domain name carefully</li>
+                        <li>Look for HTTPS in the URL</li>
+                        <li>Be cautious of shortened URLs</li>
+                        <li>Don't click links from unknown sources</li>
+                        <li>Use URL scanners before visiting suspicious links</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Notice -->
+    <section class="privacy-notice">
+        <div class="container">
+            <div class="privacy-alert">
+                <div class="privacy-icon">🔒</div>
+                <div class="privacy-text">
+                    <h3>Your Privacy</h3>
+                    <p>URL analysis is performed locally in your browser. We do not store or transmit the URLs you check to external servers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        <span>Cyber Sathi</span>
+                    </div>
+                    <p>Think Before You Click.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="scanner.html" class="active">URL Scanner</a></li>
+                            <li><a href="qr-scanner.html">QR Scanner</a></li>
+                            <li><a href="screenshot-scanner.html">Screenshot Analyzer</a></li>
+                            <li><a href="message-scanner.html">Message Checker</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="scams.html">Scam Library</a></li>
+                            <li><a href="phishing.html">Phishing Examples</a></li>
+                            <li><a href="safety-tips.html">Safety Tips</a></li>
+                            <li><a href="incident.html">Emergency Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cyber Sathi. All rights reserved.</p>
+                <p class="disclaimer">Automated analysis cannot guarantee that a website is safe or malicious. Always verify independently.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/scanner.js"></script>
+</body>
+</html>
