@@ -113,6 +113,12 @@ a:hover {
     color: var(--text-primary);
 }
 
+.logo-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
 .logo-icon {
     width: 32px;
     height: 32px;
@@ -842,6 +848,12 @@ a:hover {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
+}
+
+.footer-brand .logo .logo-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
 
 .footer-brand p {

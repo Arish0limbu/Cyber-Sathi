@@ -1,0 +1,306 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-01",
+    "disclaimer": "This is demo threat intelligence data for educational purposes only. It is not a live global threat database.",
+    "dataSources": "Educational examples and common scam patterns"
+  },
+  "suspiciousDomains": [
+    {
+      "domain": "example-scam.com",
+      "risk": "high",
+      "type": "phishing",
+      "description": "Known phishing domain targeting financial services"
+    },
+    {
+      "domain": "fake-login.net",
+      "risk": "high",
+      "type": "credential_harvesting",
+      "description": "Credential harvesting site"
+    },
+    {
+      "domain": "suspicious-shop.org",
+      "risk": "medium",
+      "type": "fake_store",
+      "description": "Suspicious online store with multiple complaints"
+    },
+    {
+      "domain": "investment-scam.io",
+      "risk": "high",
+      "type": "investment_fraud",
+      "description": "Fraudulent investment platform"
+    },
+    {
+      "domain": "verify-account.xyz",
+      "risk": "high",
+      "type": "phishing",
+      "description": "Account verification phishing site"
+    },
+    {
+      "domain": "secure-payment-digital.com",
+      "risk": "high",
+      "type": "payment_scam",
+      "description": "Fake payment processing site"
+    },
+    {
+      "domain": "crypto-wallet-pro.net",
+      "risk": "high",
+      "type": "cryptocurrency_scam",
+      "description": "Cryptocurrency wallet phishing"
+    },
+    {
+      "domain": "quick-loans-fast.com",
+      "risk": "medium",
+      "type": "loan_scam",
+      "description": "Predatory lending site"
+    }
+  ],
+  "suspiciousPatterns": [
+    {
+      "pattern": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b",
+      "risk": "medium",
+      "type": "ip_url",
+      "description": "IP-based URL instead of domain name"
+    },
+    {
+      "pattern": "xn--",
+      "risk": "medium",
+      "type": "punycode",
+      "description": "Punycode domain (possible homograph attack)"
+    },
+    {
+      "pattern": "@",
+      "risk": "medium",
+      "type": "username_in_url",
+      "description": "Username in URL (possible credential theft)"
+    },
+    {
+      "pattern": "\\.\\.",
+      "risk": "high",
+      "type": "directory_traversal",
+      "description": "Directory traversal attempt"
+    },
+    {
+      "pattern": "%[0-9a-f]{2}",
+      "risk": "medium",
+      "type": "url_encoding",
+      "description": "Excessive URL encoding"
+    },
+    {
+      "pattern": "\\.exe$",
+      "risk": "high",
+      "type": "executable_file",
+      "description": "Executable file download"
+    },
+    {
+      "pattern": "\\.zip$",
+      "risk": "medium",
+      "type": "archive_file",
+      "description": "Archive file download"
+    },
+    {
+      "pattern": "\\.rar$",
+      "risk": "medium",
+      "type": "archive_file",
+      "description": "Archive file download"
+    }
+  ],
+  "scamKeywords": {
+    "urgency": [
+      "act now",
+      "immediate action",
+      "right now",
+      "last chance",
+      "limited time",
+      "expires soon",
+      "don't wait",
+      "hurry",
+      "urgent",
+      "emergency",
+      "critical",
+      "time sensitive",
+      "today only",
+      "ending soon",
+      "final notice"
+    ],
+    "threats": [
+      "account will be closed",
+      "account suspended",
+      "legal action",
+      "arrest warrant",
+      "police",
+      "court",
+      "fine",
+      "penalty",
+      "lawsuit",
+      "investigation",
+      "fraud department",
+      "criminal charges",
+      "jail time",
+      "prosecution"
+    ],
+    "financial": [
+      "send money",
+      "pay fee",
+      "deposit",
+      "wire transfer",
+      "bank account",
+      "credit card",
+      "payment",
+      "invest",
+      "loan",
+      "cryptocurrency",
+      "bitcoin",
+      "wallet",
+      "transaction",
+      "transfer",
+      "funds"
+    ],
+    "credentials": [
+      "password",
+      "otp",
+      "pin",
+      "cvv",
+      "security code",
+      "login details",
+      "verify account",
+      "confirm identity",
+      "authentication",
+      "credentials",
+      "sign in",
+      "log in",
+      "access code"
+    ],
+    "prizes": [
+      "won",
+      "lottery",
+      "prize",
+      "free",
+      "bonus",
+      "reward",
+      "gift",
+      "congratulations",
+      "winner",
+      "claim now",
+      "cash prize",
+      "jackpot",
+      "sweepstakes",
+      "grand prize"
+    ],
+    "jobs": [
+      "job offer",
+      "work from home",
+      "earn money",
+      "guaranteed income",
+      "investment opportunity",
+      "high returns",
+      "profit",
+      "crypto investment",
+      "trading",
+      "passive income",
+      "make money fast",
+      "easy money",
+      "financial freedom"
+    ]
+  },
+  "phishingPatterns": [
+    {
+      "pattern": "login|signin|verify|account|secure|bank",
+      "risk": "medium",
+      "description": "Common phishing-related keywords"
+    },
+    {
+      "pattern": "update|confirm|validate|authenticate",
+      "risk": "medium",
+      "description": "Action-oriented phishing keywords"
+    },
+    {
+      "pattern": "wallet|crypto|bitcoin|blockchain",
+      "risk": "medium",
+      "description": "Cryptocurrency-related phishing patterns"
+    },
+    {
+      "pattern": "amazon|google|microsoft|apple|facebook",
+      "risk": "medium",
+      "description": "Brand impersonation patterns"
+    },
+    {
+      "pattern": "support|customer service|help desk",
+      "risk": "medium",
+      "description": "Support impersonation patterns"
+    }
+  ],
+  "redFlags": {
+    "payment": [
+      "Requests for OTP/PIN sharing",
+      "Urgent payment demands",
+      "Requests to share banking credentials",
+      "Payment to unknown recipients",
+      "Requests for advance fees",
+      "Unusual payment methods requested",
+      "Pressure to pay quickly"
+    ],
+    "qr": [
+      "QR codes from unknown sources",
+      "QR codes in unsolicited messages",
+      "Payment QR codes without verification",
+      "QR codes promising unrealistic rewards",
+      "QR codes in public places",
+      "QR codes with no context"
+    ],
+    "messages": [
+      "Unsolicited messages requesting action",
+      "Messages creating false urgency",
+      "Requests for sensitive information",
+      "Threats or intimidation",
+      "Too-good-to-be-true offers",
+      "Poor grammar and spelling",
+      "Generic greetings"
+    ],
+    "shopping": [
+      "Unrealistically low prices",
+      "Pressure to buy quickly",
+      "Requests for unusual payment methods",
+      "Lack of contact information",
+      "Poor website design",
+      "No customer reviews",
+      "Newly registered domains"
+    ]
+  },
+  "safeDomains": [
+    "google.com",
+    "facebook.com",
+    "amazon.com",
+    "apple.com",
+    "microsoft.com",
+    "paypal.com",
+    "netflix.com",
+    "twitter.com",
+    "instagram.com",
+    "linkedin.com",
+    "ebay.com",
+    "walmart.com",
+    "target.com",
+    "bestbuy.com"
+  ],
+  "riskScores": {
+    "indicators": {
+      "no_https": 15,
+      "ip_url": 25,
+      "punycode": 20,
+      "excessive_subdomains": 10,
+      "excessive_length": 10,
+      "suspicious_port": 15,
+      "suspicious_keywords": 5,
+      "suspicious_patterns": 10,
+      "character_repetition": 10
+    },
+    "thresholds": {
+      "low_risk": 20,
+      "caution": 40,
+      "suspicious": 60,
+      "high_risk": 80,
+      "very_high_risk": 100
+    }
+  }
+}
