@@ -46,116 +46,233 @@ document.addEventListener('DOMContentLoaded', function() {
         const patterns = [];
         let score = 0;
         const lowerMessage = message.toLowerCase();
+        const threatData = window.threatData || {};
 
-        // Urgency indicators
-        const urgencyPatterns = [
-            { pattern: 'act now', points: 15, description: 'Urgency language detected' },
-            { pattern: 'immediate action', points: 15, description: 'Immediate action requested' },
-            { pattern: 'right now', points: 10, description: 'Time-sensitive language' },
-            { pattern: 'last chance', points: 15, description: 'Last chance warning' },
-            { pattern: 'limited time', points: 10, description: 'Limited time offer' },
-            { pattern: 'expires soon', points: 10, description: 'Expiration urgency' },
-            { pattern: 'don\'t wait', points: 10, description: 'Urgency to act quickly' },
-            { pattern: 'hurry', points: 10, description: 'Hurrying language' }
-        ];
-
-        urgencyPatterns.forEach(item => {
-            if (lowerMessage.includes(item.pattern)) {
-                patterns.push({
-                    type: 'Urgency',
-                    severity: 'high',
-                    pattern: item.pattern,
-                    description: item.description
+        // Check against enhanced scam keywords from threat data
+        if (threatData.scamKeywords) {
+            // Urgency indicators
+            if (threatData.scamKeywords.urgency) {
+                threatData.scamKeywords.urgency.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Urgency',
+                            severity: 'high',
+                            pattern: keyword,
+                            description: 'Urgency language detected'
+                        });
+                        score += 12;
+                    }
                 });
-                score += item.points;
             }
-        });
 
-        // Threat indicators
-        const threatPatterns = [
-            { pattern: 'account will be closed', points: 20, description: 'Account closure threat' },
-            { pattern: 'account suspended', points: 20, description: 'Account suspension threat' },
-            { pattern: 'legal action', points: 25, description: 'Legal action threat' },
-            { pattern: 'arrest warrant', points: 25, description: 'Arrest threat' },
-            { pattern: 'police', points: 15, description: 'Police reference' },
-            { pattern: 'court', points: 15, description: 'Legal action reference' },
-            { pattern: 'fine', points: 15, description: 'Fine threat' },
-            { pattern: 'penalty', points: 15, description: 'Penalty threat' }
-        ];
-
-        threatPatterns.forEach(item => {
-            if (lowerMessage.includes(item.pattern)) {
-                patterns.push({
-                    type: 'Threat',
-                    severity: 'high',
-                    pattern: item.pattern,
-                    description: item.description
+            // Threat indicators
+            if (threatData.scamKeywords.threats) {
+                threatData.scamKeywords.threats.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Threat',
+                            severity: 'high',
+                            pattern: keyword,
+                            description: 'Threatening language detected'
+                        });
+                        score += 20;
+                    }
                 });
-                score += item.points;
             }
-        });
 
-        // Financial request indicators
-        const financialPatterns = [
-            { pattern: 'send money', points: 20, description: 'Money transfer request' },
-            { pattern: 'pay fee', points: 15, description: 'Fee payment request' },
-            { pattern: 'deposit', points: 15, description: 'Deposit request' },
-            { pattern: 'wire transfer', points: 20, description: 'Wire transfer request' },
-            { pattern: 'bank account', points: 15, description: 'Bank account request' },
-            { pattern: 'credit card', points: 15, description: 'Credit card request' },
-            { pattern: 'payment', points: 10, description: 'Payment request' },
-            { pattern: 'invest', points: 15, description: 'Investment request' },
-            { pattern: 'loan', points: 15, description: 'Loan offer' }
-        ];
-
-        financialPatterns.forEach(item => {
-            if (lowerMessage.includes(item.pattern)) {
-                patterns.push({
-                    type: 'Financial Request',
-                    severity: 'high',
-                    pattern: item.pattern,
-                    description: item.description
+            // Financial request indicators
+            if (threatData.scamKeywords.financial) {
+                threatData.scamKeywords.financial.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Financial Request',
+                            severity: 'high',
+                            pattern: keyword,
+                            description: 'Financial request detected'
+                        });
+                        score += 15;
+                    }
                 });
-                score += item.points;
             }
-        });
 
-        // Credential request indicators
-        const credentialPatterns = [
-            { pattern: 'password', points: 20, description: 'Password request' },
-            { pattern: 'otp', points: 25, description: 'OTP request' },
-            { pattern: 'pin', points: 20, description: 'PIN request' },
-            { pattern: 'cvv', points: 20, description: 'CVV request' },
-            { pattern: 'security code', points: 20, description: 'Security code request' },
-            { pattern: 'login details', points: 15, description: 'Login details request' },
-            { pattern: 'verify account', points: 15, description: 'Account verification request' },
-            { pattern: 'confirm identity', points: 15, description: 'Identity confirmation request' }
-        ];
-
-        credentialPatterns.forEach(item => {
-            if (lowerMessage.includes(item.pattern)) {
-                patterns.push({
-                    type: 'Credential Request',
-                    severity: 'high',
-                    pattern: item.pattern,
-                    description: item.description
+            // Credential request indicators
+            if (threatData.scamKeywords.credentials) {
+                threatData.scamKeywords.credentials.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Credential Request',
+                            severity: 'high',
+                            pattern: keyword,
+                            description: 'Credential request detected'
+                        });
+                        score += 20;
+                    }
                 });
-                score += item.points;
             }
-        });
+
+            // Prize indicators
+            if (threatData.scamKeywords.prizes) {
+                threatData.scamKeywords.prizes.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Prize Scam',
+                            severity: 'medium',
+                            pattern: keyword,
+                            description: 'Prize-related language detected'
+                        });
+                        score += 10;
+                    }
+                });
+            }
+
+            // Job/investment indicators
+            if (threatData.scamKeywords.jobs) {
+                threatData.scamKeywords.jobs.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Job/Investment Scam',
+                            severity: 'medium',
+                            pattern: keyword,
+                            description: 'Job/investment-related language detected'
+                        });
+                        score += 12;
+                    }
+                });
+            }
+
+            // Romance scam indicators
+            if (threatData.scamKeywords.romance) {
+                threatData.scamKeywords.romance.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Romance Scam',
+                            severity: 'medium',
+                            pattern: keyword,
+                            description: 'Romance scam language detected'
+                        });
+                        score += 10;
+                    }
+                });
+            }
+
+            // Tech support scam indicators
+            if (threatData.scamKeywords.tech) {
+                threatData.scamKeywords.tech.forEach(keyword => {
+                    if (lowerMessage.includes(keyword)) {
+                        patterns.push({
+                            type: 'Tech Support Scam',
+                            severity: 'high',
+                            pattern: keyword,
+                            description: 'Tech support scam language detected'
+                        });
+                        score += 18;
+                    }
+                });
+            }
+        }
+
+        // Check for phishing patterns
+        if (threatData.phishingPatterns) {
+            threatData.phishingPatterns.forEach(phishingPattern => {
+                const pattern = new RegExp(phishingPattern.pattern, 'i');
+                if (pattern.test(message)) {
+                    patterns.push({
+                        type: 'Phishing Pattern',
+                        severity: phishingPattern.risk === 'high' ? 'high' : 'medium',
+                        pattern: phishingPattern.pattern,
+                        description: phishingPattern.description
+                    });
+                    score += phishingPattern.risk === 'high' ? 15 : 10;
+                }
+            });
+        }
+
+        // Check for suspicious URLs in message
+        const urlPattern = /https?:\/\/[^\s]+/g;
+        const urls = message.match(urlPattern);
+        if (urls) {
+            urls.forEach(url => {
+                patterns.push({
+                    type: 'Suspicious URL',
+                    severity: 'medium',
+                    pattern: url,
+                    description: 'URL detected in message - analyze separately'
+                });
+                score += 10;
+            });
+        }
+
+        // Check for phone numbers (potential scam calls)
+        const phonePattern = /\+?\d{10,}/g;
+        const phones = message.match(phonePattern);
+        if (phones) {
+            patterns.push({
+                type: 'Phone Number',
+                severity: 'low',
+                pattern: phones.join(', '),
+                description: 'Phone number detected - verify independently'
+            });
+            score += 5;
+        }
+
+        // Check for excessive capitalization (common in scam messages)
+        const capsRatio = (message.match(/[A-Z]/g) || []).length / message.length;
+        if (capsRatio > 0.5) {
+            patterns.push({
+                type: 'Formatting',
+                severity: 'low',
+                pattern: 'Excessive caps',
+                description: 'Excessive capitalization detected'
+            });
+            score += 5;
+        }
+
+        // Check for multiple exclamation marks
+        const exclamationCount = (message.match(/!/g) || []).length;
+        if (exclamationCount > 3) {
+            patterns.push({
+                type: 'Formatting',
+                severity: 'low',
+                pattern: 'Multiple exclamations',
+                description: 'Excessive exclamation marks detected'
+            });
+            score += 5;
+        }
+
+        // Type-specific analysis
+        if (type === 'email') {
+            // Check for suspicious email patterns
+            if (lowerMessage.includes('unsubscribe') && !lowerMessage.includes('newsletter')) {
+                patterns.push({
+                    type: 'Email Pattern',
+                    severity: 'medium',
+                    pattern: 'suspicious unsubscribe',
+                    description: 'Suspicious unsubscribe pattern'
+                });
+                score += 8;
+            }
+        }
 
         // Cap score at 100
         score = Math.min(score, 100);
 
         // Determine risk level
         let riskLevel;
-        if (score <= 20) {
+        const thresholds = threatData.riskScores?.thresholds || {
+            low_risk: 20,
+            caution: 40,
+            suspicious: 60,
+            high_risk: 80,
+            very_high_risk: 100
+        };
+
+        if (score <= thresholds.low_risk) {
             riskLevel = 'LOW RISK';
-        } else if (score <= 40) {
+        } else if (score <= thresholds.caution) {
             riskLevel = 'CAUTION';
-        } else if (score <= 60) {
+        } else if (score <= thresholds.suspicious) {
             riskLevel = 'SUSPICIOUS';
-        } else if (score <= 80) {
+        } else if (score <= thresholds.high_risk) {
             riskLevel = 'HIGH RISK';
         } else {
             riskLevel = 'VERY HIGH RISK';
@@ -180,7 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
             riskLevel: riskLevel,
             patterns: patterns,
             messageType: type,
-            recommendation: recommendation
+            recommendation: recommendation,
+            detectedUrls: urls || [],
+            detectedPhones: phones || []
         };
     }
 

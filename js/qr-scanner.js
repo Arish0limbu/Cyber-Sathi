@@ -210,21 +210,104 @@ document.addEventListener('DOMContentLoaded', function() {
         const warnings = [];
         let score = 0;
         const domain = CyberSathiUtils.extractDomain(url);
+        const threatData = window.threatData || {};
+
+        // Check against known suspicious domains
+        if (threatData.suspiciousDomains) {
+            const suspiciousDomain = threatData.suspiciousDomains.find(
+                d => domain.includes(d.domain) || d.domain.includes(domain)
+            );
+            if (suspiciousDomain) {
+                warnings.push(`🚨 Known suspicious domain: ${suspiciousDomain.domain} (${suspiciousDomain.type})`);
+                score += threatData.riskScores?.indicators?.known_suspicious_domain || 40;
+            }
+        }
+
+        // Check against safe domains
+        if (threatData.safeDomains) {
+            const isSafe = threatData.safeDomains.some(safeDomain => 
+                domain === safeDomain || domain.endsWith('.' + safeDomain)
+            );
+            if (isSafe) {
+                score = Math.max(0, score - 10);
+            }
+        }
+
+        // Check for suspicious TLDs
+        if (threatData.suspiciousTLDs) {
+            const tld = domain.substring(domain.lastIndexOf('.'));
+            if (threatData.suspiciousTLDs.includes(tld)) {
+                warnings.push(`⚠ Suspicious top-level domain: ${tld}`);
+                score += threatData.riskScores?.indicators?.suspicious_tld || 15;
+            }
+        }
 
         // Basic checks
         if (!url.startsWith('https://')) {
             warnings.push('⚠ No HTTPS encryption');
-            score += 15;
+            score += threatData.riskScores?.indicators?.no_https || 20;
         }
 
-        if (url.includes('payment') || url.includes('login') || url.includes('verify')) {
-            warnings.push('⚠ Payment/login-related destination');
-            score += 15;
+        // Check for IP-based URL
+        const ipPattern = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
+        if (ipPattern.test(url)) {
+            warnings.push('🚨 IP-based URL detected instead of domain name');
+            score += threatData.riskScores?.indicators?.ip_url || 30;
         }
 
-        if (url.includes('bit.ly') || url.includes('tinyurl')) {
-            warnings.push('⚠ URL shortener detected (cannot see final destination)');
-            score += 20;
+        // Check for punycode
+        if (url.includes('xn--')) {
+            warnings.push('🚨 Punycode domain detected (possible homograph attack)');
+            score += threatData.riskScores?.indicators?.punycode || 25;
+        }
+
+        // Check for username in URL
+        if (url.includes('@')) {
+            warnings.push('🚨 Username in URL (possible credential theft)');
+            score += threatData.riskScores?.indicators?.username_in_url || 30;
+        }
+
+        // Check for credential parameters
+        const credentialPatterns = ['token=', 'key=', 'secret=', 'password=', 'pass='];
+        credentialPatterns.forEach(pattern => {
+            if (url.toLowerCase().includes(pattern)) {
+                warnings.push(`🚨 Credential parameter detected: ${pattern}`);
+                score += threatData.riskScores?.indicators?.credential_parameter || 35;
+            }
+        });
+
+        // Check for URL shorteners
+        const shorteners = ['bit.ly', 'tinyurl', 'goo.gl', 't.co', 'ow.ly', 'is.gd', 'buff.ly', 'adf.ly'];
+        shorteners.forEach(shortener => {
+            if (url.includes(shortener)) {
+                warnings.push(`⚠ URL shortener detected: ${shortener} (cannot see final destination)`);
+                score += threatData.riskScores?.indicators?.url_shortener || 18;
+            }
+        });
+
+        // Check for brand impersonation
+        if (threatData.brandImpersonation) {
+            Object.entries(threatData.brandImpersonation).forEach(([brand, officialDomains]) => {
+                if (url.toLowerCase().includes(brand)) {
+                    const isOfficial = officialDomains.some(official => 
+                        domain === official || domain.endsWith('.' + official)
+                    );
+                    if (!isOfficial) {
+                        warnings.push(`⚠ Possible ${brand} brand impersonation`);
+                        score += threatData.riskScores?.indicators?.brand_impersonation || 25;
+                    }
+                }
+            });
+        }
+
+        // Check for payment/login keywords
+        const sensitiveKeywords = ['payment', 'login', 'signin', 'verify', 'secure', 'bank', 'wallet', 'account'];
+        const foundKeywords = sensitiveKeywords.filter(keyword => 
+            url.toLowerCase().includes(keyword)
+        );
+        if (foundKeywords.length > 0) {
+            warnings.push(`⚠ Sensitive keywords detected: ${foundKeywords.join(', ')}`);
+            score += foundKeywords.length * (threatData.riskScores?.indicators?.suspicious_keywords || 8);
         }
 
         // Cap score at 100
@@ -232,13 +315,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Determine risk level
         let riskLevel;
-        if (score <= 20) {
+        const thresholds = threatData.riskScores?.thresholds || {
+            low_risk: 20,
+            caution: 40,
+            suspicious: 60,
+            high_risk: 80,
+            very_high_risk: 100
+        };
+
+        if (score <= thresholds.low_risk) {
             riskLevel = 'LOW RISK';
-        } else if (score <= 40) {
+        } else if (score <= thresholds.caution) {
             riskLevel = 'CAUTION';
-        } else if (score <= 60) {
+        } else if (score <= thresholds.suspicious) {
             riskLevel = 'SUSPICIOUS';
-        } else if (score <= 80) {
+        } else if (score <= thresholds.high_risk) {
             riskLevel = 'HIGH RISK';
         } else {
             riskLevel = 'VERY HIGH RISK';

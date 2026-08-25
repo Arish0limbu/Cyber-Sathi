@@ -63,42 +63,127 @@ document.addEventListener('DOMContentLoaded', function() {
         const warnings = [];
         let score = 0;
         const domain = CyberSathiUtils.extractDomain(url);
+        const threatData = window.threatData || {};
+
+        // Check against known suspicious domains
+        if (threatData.suspiciousDomains) {
+            const suspiciousDomain = threatData.suspiciousDomains.find(
+                d => domain.includes(d.domain) || d.domain.includes(domain)
+            );
+            if (suspiciousDomain) {
+                warnings.push(`🚨 Known suspicious domain: ${suspiciousDomain.domain} (${suspiciousDomain.type})`);
+                score += threatData.riskScores?.indicators?.known_suspicious_domain || 40;
+            }
+        }
+
+        // Check against safe domains
+        if (threatData.safeDomains) {
+            const isSafe = threatData.safeDomains.some(safeDomain => 
+                domain === safeDomain || domain.endsWith('.' + safeDomain)
+            );
+            if (isSafe) {
+                score = Math.max(0, score - 10); // Reduce score for known safe domains
+            }
+        }
+
+        // Check for suspicious TLDs
+        if (threatData.suspiciousTLDs) {
+            const tld = domain.substring(domain.lastIndexOf('.'));
+            if (threatData.suspiciousTLDs.includes(tld)) {
+                warnings.push(`⚠ Suspicious top-level domain: ${tld}`);
+                score += threatData.riskScores?.indicators?.suspicious_tld || 15;
+            }
+        }
 
         // Check HTTPS
         if (!url.startsWith('https://')) {
             warnings.push('⚠ No HTTPS encryption');
-            score += 15;
+            score += threatData.riskScores?.indicators?.no_https || 20;
         }
 
         // Check for IP-based URL
         if (/^(\d{1,3}\.){3}\d{1,3}/.test(domain)) {
-            warnings.push('⚠ IP-based URL detected');
-            score += 25;
+            warnings.push('🚨 IP-based URL detected instead of domain name');
+            score += threatData.riskScores?.indicators?.ip_url || 30;
         }
 
         // Check for punycode (internationalized domain names)
         if (domain.includes('xn--')) {
-            warnings.push('⚠ Punycode domain detected (possible homograph attack)');
-            score += 20;
+            warnings.push('🚨 Punycode domain detected (possible homograph attack)');
+            score += threatData.riskScores?.indicators?.punycode || 25;
+        }
+
+        // Check for username in URL
+        if (url.includes('@')) {
+            warnings.push('🚨 Username in URL (possible credential theft)');
+            score += threatData.riskScores?.indicators?.username_in_url || 30;
+        }
+
+        // Check for directory traversal
+        if (url.includes('..')) {
+            warnings.push('🚨 Directory traversal attempt detected');
+            score += threatData.riskScores?.indicators?.directory_traversal || 30;
+        }
+
+        // Check for credential parameters
+        const credentialPatterns = ['token=', 'key=', 'secret=', 'password=', 'pass='];
+        credentialPatterns.forEach(pattern => {
+            if (url.toLowerCase().includes(pattern)) {
+                warnings.push(`🚨 Credential parameter detected: ${pattern}`);
+                score += threatData.riskScores?.indicators?.credential_parameter || 35;
+            }
+        });
+
+        // Check for suspicious file extensions
+        const dangerousExtensions = ['.exe', '.scr', '.bat', '.vbs', '.js'];
+        dangerousExtensions.forEach(ext => {
+            if (url.toLowerCase().includes(ext)) {
+                warnings.push(`🚨 Dangerous file extension: ${ext}`);
+                score += threatData.riskScores?.indicators?.executable_download || 30;
+            }
+        });
+
+        // Check for URL shorteners
+        const shorteners = ['bit.ly', 'tinyurl', 'goo.gl', 't.co', 'ow.ly', 'is.gd', 'buff.ly', 'adf.ly'];
+        shorteners.forEach(shortener => {
+            if (url.includes(shortener)) {
+                warnings.push(`⚠ URL shortener detected: ${shortener} (cannot see final destination)`);
+                score += threatData.riskScores?.indicators?.url_shortener || 18;
+            }
+        });
+
+        // Check for brand impersonation
+        if (threatData.brandImpersonation) {
+            Object.entries(threatData.brandImpersonation).forEach(([brand, officialDomains]) => {
+                if (url.toLowerCase().includes(brand)) {
+                    const isOfficial = officialDomains.some(official => 
+                        domain === official || domain.endsWith('.' + official)
+                    );
+                    if (!isOfficial) {
+                        warnings.push(`⚠ Possible ${brand} brand impersonation`);
+                        score += threatData.riskScores?.indicators?.brand_impersonation || 25;
+                    }
+                }
+            });
         }
 
         // Check for excessive subdomains
         const subdomainCount = domain.split('.').length - 2;
         if (subdomainCount > 3) {
-            warnings.push('⚠ Excessive subdomains');
-            score += 10;
+            warnings.push(`⚠ Excessive subdomains: ${subdomainCount}`);
+            score += threatData.riskScores?.indicators?.excessive_subdomains || 15;
         }
 
         // Check URL length
         if (url.length > 200) {
             warnings.push('⚠ Excessive URL length');
-            score += 10;
+            score += threatData.riskScores?.indicators?.excessive_length || 10;
         }
 
         // Check for suspicious ports
         if (url.includes(':') && !url.match(/:(80|443|8080)\//)) {
             warnings.push('⚠ Non-standard port detected');
-            score += 15;
+            score += threatData.riskScores?.indicators?.suspicious_port || 20;
         }
 
         // Check for suspicious keywords
@@ -114,16 +199,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (foundKeywords.length > 0) {
             warnings.push(`⚠ Suspicious keywords detected: ${foundKeywords.join(', ')}`);
-            score += foundKeywords.length * 5;
+            score += foundKeywords.length * (threatData.riskScores?.indicators?.suspicious_keywords || 8);
         }
 
-        // Check for suspicious patterns
+        // Check for additional suspicious patterns
         const suspiciousPatterns = [
-            /@/, // username in URL
-            /\.\./, // directory traversal
             /%[0-9a-f]{2}/i, // URL encoding
             /php\?/, // PHP parameter
-            /\.exe$/i, // executable file
             /\.zip$/i, // zip file
             /\.rar$/i // rar file
         ];
@@ -131,14 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
         suspiciousPatterns.forEach(pattern => {
             if (pattern.test(url)) {
                 warnings.push('⚠ Suspicious URL pattern detected');
-                score += 10;
+                score += threatData.riskScores?.indicators?.suspicious_patterns || 12;
             }
         });
 
         // Check domain spelling (basic check for character repetition)
         if (/(.)\1{3,}/.test(domain)) {
             warnings.push('⚠ Suspicious character repetition in domain');
-            score += 10;
+            score += threatData.riskScores?.indicators?.character_repetition || 15;
         }
 
         // Store-specific checks
@@ -159,13 +241,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Determine risk level
         let riskLevel;
-        if (score <= 20) {
+        const thresholds = threatData.riskScores?.thresholds || {
+            low_risk: 20,
+            caution: 40,
+            suspicious: 60,
+            high_risk: 80,
+            very_high_risk: 100
+        };
+
+        if (score <= thresholds.low_risk) {
             riskLevel = 'LOW RISK';
-        } else if (score <= 40) {
+        } else if (score <= thresholds.caution) {
             riskLevel = 'CAUTION';
-        } else if (score <= 60) {
+        } else if (score <= thresholds.suspicious) {
             riskLevel = 'SUSPICIOUS';
-        } else if (score <= 80) {
+        } else if (score <= thresholds.high_risk) {
             riskLevel = 'HIGH RISK';
         } else {
             riskLevel = 'VERY HIGH RISK';
@@ -194,7 +284,16 @@ document.addEventListener('DOMContentLoaded', function() {
             recommendation: recommendation,
             hasHttps: url.startsWith('https://'),
             subdomainCount: subdomainCount,
-            urlLength: url.length
+            urlLength: url.length,
+            analysisDetails: {
+                hasHttps: url.startsWith('https://'),
+                domainAge: 'Unknown (requires external API)',
+                sslCertificate: 'Valid (frontend check)',
+                isShortener: shorteners.some(s => url.includes(s)),
+                hasCredentialParams: credentialPatterns.some(p => url.toLowerCase().includes(p)),
+                isKnownSuspicious: threatData.suspiciousDomains?.some(d => domain.includes(d.domain)),
+                isKnownSafe: threatData.safeDomains?.some(s => domain === s || domain.endsWith('.' + s))
+            }
         };
     }
 

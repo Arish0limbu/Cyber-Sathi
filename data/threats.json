@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "lastUpdated": "2024-01-01",
     "disclaimer": "This is demo threat intelligence data for educational purposes only. It is not a live global threat database.",
     "dataSources": "Educational examples and common scam patterns"
@@ -53,24 +53,132 @@
       "risk": "medium",
       "type": "loan_scam",
       "description": "Predatory lending site"
+    },
+    {
+      "domain": "bank-secure-alert.com",
+      "risk": "high",
+      "type": "banking_phishing",
+      "description": "Fake banking security alert site"
+    },
+    {
+      "domain": "apple-id-verify.net",
+      "risk": "high",
+      "type": "brand_impersonation",
+      "description": "Apple ID phishing site"
+    },
+    {
+      "domain": "microsoft-account-support.com",
+      "risk": "high",
+      "type": "brand_impersonation",
+      "description": "Microsoft account phishing"
+    },
+    {
+      "domain": "google-security-check.xyz",
+      "risk": "high",
+      "type": "brand_impersonation",
+      "description": "Google security phishing"
+    },
+    {
+      "domain": "paypal-verify-account.com",
+      "risk": "high",
+      "type": "payment_phishing",
+      "description": "PayPal phishing site"
+    },
+    {
+      "domain": "amazon-order-confirm.net",
+      "risk": "high",
+      "type": "ecommerce_phishing",
+      "description": "Fake Amazon order confirmation"
+    },
+    {
+      "domain": "netflix-account-verify.com",
+      "risk": "high",
+      "type": "subscription_phishing",
+      "description": "Netflix account phishing"
+    },
+    {
+      "domain": "facebook-security-alert.com",
+      "risk": "high",
+      "type": "social_phishing",
+      "description": "Facebook security phishing"
+    },
+    {
+      "domain": "instagram-verify-account.com",
+      "risk": "high",
+      "type": "social_phishing",
+      "description": "Instagram verification phishing"
+    },
+    {
+      "domain": "crypto-exchange-pro.com",
+      "risk": "high",
+      "type": "crypto_scam",
+      "description": "Fake cryptocurrency exchange"
+    },
+    {
+      "domain": "trading-bot-profit.com",
+      "risk": "high",
+      "type": "investment_scam",
+      "description": "Fake trading bot platform"
+    },
+    {
+      "domain": "government-grant-free.com",
+      "risk": "high",
+      "type": "government_impersonation",
+      "description": "Fake government grant site"
     }
+  ],
+  "suspiciousTLDs": [
+    ".xyz",
+    ".top",
+    ".tk",
+    ".ml",
+    ".ga",
+    ".cf",
+    ".gq",
+    ".cc",
+    ".pw",
+    ".loan",
+    ".win",
+    ".download",
+    ".racing",
+    ".top",
+    ".stream",
+    ".date",
+    ".faith",
+    ".zip",
+    ".mov",
+    ".party",
+    ".science",
+    ".work",
+    ".men",
+    ".review",
+    ".tech",
+    ".website",
+    ".online",
+    ".click",
+    ".country",
+    ".link",
+    ".help",
+    ".mobi",
+    ".info",
+    ".biz"
   ],
   "suspiciousPatterns": [
     {
       "pattern": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b",
-      "risk": "medium",
+      "risk": "high",
       "type": "ip_url",
       "description": "IP-based URL instead of domain name"
     },
     {
       "pattern": "xn--",
-      "risk": "medium",
+      "risk": "high",
       "type": "punycode",
       "description": "Punycode domain (possible homograph attack)"
     },
     {
       "pattern": "@",
-      "risk": "medium",
+      "risk": "high",
       "type": "username_in_url",
       "description": "Username in URL (possible credential theft)"
     },
@@ -103,8 +211,108 @@
       "risk": "medium",
       "type": "archive_file",
       "description": "Archive file download"
+    },
+    {
+      "pattern": "\\.scr$",
+      "risk": "high",
+      "type": "script_file",
+      "description": "Script file download"
+    },
+    {
+      "pattern": "\\.bat$",
+      "risk": "high",
+      "type": "batch_file",
+      "description": "Batch file download"
+    },
+    {
+      "pattern": "\\.js$",
+      "risk": "medium",
+      "type": "javascript_file",
+      "description": "JavaScript file download"
+    },
+    {
+      "pattern": "\\.vbs$",
+      "risk": "high",
+      "type": "vbscript_file",
+      "description": "VBScript file download"
+    },
+    {
+      "pattern": "\\.(bit\\.ly|tinyurl|goo\\.gl|t\\.co|ow\\.ly|is\\.gd|buff\\.ly|adf\\.ly)",
+      "risk": "medium",
+      "type": "url_shortener",
+      "description": "URL shortener detected (cannot see final destination)"
+    },
+    {
+      "pattern": "\\.(login|signin|verify|secure|bank|account|wallet|payment)",
+      "risk": "medium",
+      "type": "suspicious_subdomain",
+      "description": "Suspicious subdomain pattern"
+    },
+    {
+      "pattern": "\\b\\d{16}\\b",
+      "risk": "high",
+      "type": "credit_card",
+      "description": "Possible credit card number in URL"
+    },
+    {
+      "pattern": "\\b[A-Z0-9]{32}\\b",
+      "risk": "high",
+      "type": "api_key",
+      "description": "Possible API key in URL"
+    },
+    {
+      "pattern": "token=|key=|secret=|password=|pass=",
+      "risk": "high",
+      "type": "credential_parameter",
+      "description": "Credential parameter in URL"
     }
   ],
+  "brandImpersonation": {
+    "apple": ["apple.com", "icloud.com", "appleid.apple.com"],
+    "google": ["google.com", "accounts.google.com", "gmail.com"],
+    "microsoft": ["microsoft.com", "live.com", "outlook.com", "office.com"],
+    "amazon": ["amazon.com", "amazon.co.uk", "amazon.in"],
+    "facebook": ["facebook.com", "fb.com"],
+    "instagram": ["instagram.com"],
+    "twitter": ["twitter.com", "x.com"],
+    "linkedin": ["linkedin.com"],
+    "paypal": ["paypal.com"],
+    "netflix": ["netflix.com"],
+    "ebay": ["ebay.com"],
+    "walmart": ["walmart.com"],
+    "chase": ["chase.com"],
+    "bankofamerica": ["bankofamerica.com"],
+    "wellsfargo": ["wellsfargo.com"],
+    "citibank": ["citi.com"]
+  },
+  "homographCharacters": {
+    "a": ["а", "а", "а", "ą", "ą", "ɑ"],
+    "b": ["ƅ", "Ƅ", "ƀ"],
+    "c": ["с", "ϲ", "ć", "č"],
+    "d": ["ԁ", "đ"],
+    "e": ["е", "ё", "є", "é", "ę"],
+    "f": ["ƒ"],
+    "g": ["ɡ", "ǥ"],
+    "h": ["һ", "һ"],
+    "i": ["і", "і", "í", "ï", "ї"],
+    "j": ["ј"],
+    "k": ["κ", "к"],
+    "l": ["ⅼ", "ⅼ", "ł"],
+    "m": ["м", "м"],
+    "n": ["ń", "ņ"],
+    "o": ["о", "о", "о", "ø", "õ", "ó"],
+    "p": ["р", "р"],
+    "q": ["q̇"],
+    "r": ["г", "г", "г"],
+    "s": ["ѕ", "ѕ", "ś", "š"],
+    "t": ["т", "т", "ţ"],
+    "u": ["υ", "υ", "ü", "ù"],
+    "v": ["ν", "ν"],
+    "w": ["ա", "ա"],
+    "x": ["х", "х"],
+    "y": ["у", "у", "ý"],
+    "z": ["ž", "ż"]
+  },
   "scamKeywords": {
     "urgency": [
       "act now",
@@ -121,7 +329,15 @@
       "time sensitive",
       "today only",
       "ending soon",
-      "final notice"
+      "final notice",
+      "expires in",
+      "before it's too late",
+      "24 hours only",
+      "deal ends soon",
+      "act immediately",
+      "your account will be",
+      "suspended immediately",
+      "permanent suspension"
     ],
     "threats": [
       "account will be closed",
@@ -137,7 +353,14 @@
       "fraud department",
       "criminal charges",
       "jail time",
-      "prosecution"
+      "prosecution",
+      "IRS",
+      "tax authority",
+      "government",
+      "debt collection",
+      "foreclosure",
+      "repossession",
+      "civil lawsuit"
     ],
     "financial": [
       "send money",
@@ -154,7 +377,17 @@
       "wallet",
       "transaction",
       "transfer",
-      "funds"
+      "funds",
+      "western union",
+      "moneygram",
+      "gift card",
+      "itunes card",
+      "amazon card",
+      "google play card",
+      "pay safe card",
+      "cash app",
+      "venmo",
+      "zelle"
     ],
     "credentials": [
       "password",
@@ -169,7 +402,14 @@
       "credentials",
       "sign in",
       "log in",
-      "access code"
+      "access code",
+      "verification code",
+      "2fa",
+      "two factor",
+      "account number",
+      "routing number",
+      "ssn",
+      "social security"
     ],
     "prizes": [
       "won",
@@ -185,7 +425,13 @@
       "cash prize",
       "jackpot",
       "sweepstakes",
-      "grand prize"
+      "grand prize",
+      "selected winner",
+      "randomly selected",
+      "instant winner",
+      "exclusive offer",
+      "limited reward",
+      "claim your prize"
     ],
     "jobs": [
       "job offer",
@@ -200,7 +446,50 @@
       "passive income",
       "make money fast",
       "easy money",
-      "financial freedom"
+      "financial freedom",
+      "get rich quick",
+      "no experience needed",
+      "daily income",
+      "weekly income",
+      "part time job",
+      "remote work",
+      "side hustle"
+    ],
+    "romance": [
+      "in love",
+      "falling for you",
+      "my love",
+      "beautiful",
+      "handsome",
+      "marriage",
+      "relationship",
+      "dating",
+      "need money",
+      "emergency situation",
+      "travel to meet you",
+      "visiting you",
+      "send money for",
+      "help me",
+      "assist me",
+      "support me"
+    ],
+    "tech": [
+      "virus detected",
+      "malware found",
+      "system infected",
+      "computer hacked",
+      "security alert",
+      "subscription expired",
+      "renew now",
+      "account compromised",
+      "unusual activity",
+      "suspicious login",
+      "call support",
+      "technical support",
+      "microsoft technician",
+      "apple support",
+      "refund scam",
+      "windows error"
     ]
   },
   "phishingPatterns": [
@@ -228,17 +517,45 @@
       "pattern": "support|customer service|help desk",
       "risk": "medium",
       "description": "Support impersonation patterns"
+    },
+    {
+      "pattern": "billing|invoice|payment due|subscription",
+      "risk": "medium",
+      "description": "Billing-related phishing patterns"
+    },
+    {
+      "pattern": "security alert|unusual activity|suspicious login",
+      "risk": "high",
+      "description": "Security alert phishing patterns"
+    },
+    {
+      "pattern": "confirm identity|verify account|update information",
+      "risk": "high",
+      "description": "Identity verification phishing patterns"
+    },
+    {
+      "pattern": "account will be|account suspended|service discontinued",
+      "risk": "high",
+      "description": "Account threat phishing patterns"
+    },
+    {
+      "pattern": "winning|congratulations|selected|awarded",
+      "risk": "medium",
+      "description": "Prize scam phishing patterns"
     }
   ],
   "redFlags": {
     "payment": [
       "Requests for OTP/PIN sharing",
       "Urgent payment demands",
-      "Requests to share banking credentials",
+      "Requests for banking credentials",
       "Payment to unknown recipients",
       "Requests for advance fees",
       "Unusual payment methods requested",
-      "Pressure to pay quickly"
+      "Pressure to pay quickly",
+      "Gift card payment requests",
+      "Wire transfer only payments",
+      "Cryptocurrency only payments"
     ],
     "qr": [
       "QR codes from unknown sources",
@@ -246,7 +563,9 @@
       "Payment QR codes without verification",
       "QR codes promising unrealistic rewards",
       "QR codes in public places",
-      "QR codes with no context"
+      "QR codes with no context",
+      "QR codes requesting personal info",
+      "QR codes for account verification"
     ],
     "messages": [
       "Unsolicited messages requesting action",
@@ -255,7 +574,10 @@
       "Threats or intimidation",
       "Too-good-to-be-true offers",
       "Poor grammar and spelling",
-      "Generic greetings"
+      "Generic greetings",
+      "Mismatched sender information",
+      "Requests for unusual payment methods",
+      "Suspicious links or attachments"
     ],
     "shopping": [
       "Unrealistically low prices",
@@ -264,7 +586,10 @@
       "Lack of contact information",
       "Poor website design",
       "No customer reviews",
-      "Newly registered domains"
+      "Newly registered domains",
+      "Missing SSL certificate",
+      "Suspicious payment processors",
+      "Limited payment options"
     ]
   },
   "safeDomains": [
@@ -281,19 +606,32 @@
     "ebay.com",
     "walmart.com",
     "target.com",
-    "bestbuy.com"
+    "bestbuy.com",
+    "youtube.com",
+    "reddit.com",
+    "wikipedia.org",
+    "github.com",
+    "stackoverflow.com"
   ],
   "riskScores": {
     "indicators": {
-      "no_https": 15,
-      "ip_url": 25,
-      "punycode": 20,
-      "excessive_subdomains": 10,
+      "no_https": 20,
+      "ip_url": 30,
+      "punycode": 25,
+      "excessive_subdomains": 15,
       "excessive_length": 10,
-      "suspicious_port": 15,
-      "suspicious_keywords": 5,
-      "suspicious_patterns": 10,
-      "character_repetition": 10
+      "suspicious_port": 20,
+      "suspicious_keywords": 8,
+      "suspicious_patterns": 12,
+      "character_repetition": 15,
+      "suspicious_tld": 15,
+      "url_shortener": 18,
+      "brand_impersonation": 25,
+      "homograph_attack": 30,
+      "credential_parameter": 35,
+      "known_suspicious_domain": 40,
+      "executable_download": 30,
+      "excessive_redirects": 20
     },
     "thresholds": {
       "low_risk": 20,
